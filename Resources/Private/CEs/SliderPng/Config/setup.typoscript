@@ -1,0 +1,33 @@
+
+tt_content.tx_plate_ces_sliderpng = COA
+tt_content.tx_plate_ces_sliderpng {
+
+    10 =< lib.ceDefault
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            0 = EXT:plate_ces/Resources/Private/CEs/SliderPng/
+        }
+        variables {
+            contentFrame = TEXT
+            contentFrame.data = flexform: pi_flexform:settings.contentframe
+            contentFrame.ifEmpty = container
+
+            time = TEXT
+            time.data = flexform: pi_flexform:settings.time
+            time.ifEmpty = 3s
+
+            showArrows = TEXT
+            showArrows.data = flexform: pi_flexform:settings.showArrows
+            showArrows.ifEmpty =
+        }
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                references.table = tt_content
+                as = slides
+            }
+        }
+    }
+}

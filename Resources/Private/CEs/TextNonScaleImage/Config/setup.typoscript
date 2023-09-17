@@ -1,0 +1,36 @@
+
+tt_content.tx_plate_ces_textnonscaleimage = COA
+tt_content.tx_plate_ces_textnonscaleimage {
+    10 =< lib.ceDefault
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            1684244400 = EXT:plate_ces/Resources/Private/CEs/TextNonScaleImage/
+        }
+        variables {
+            imagewidth = TEXT
+            imagewidth.data = field:imagewidth
+            imagewidth.ifEmpty = 400
+        }
+        settings{
+            feEditing{
+                header{
+                    table = tt_content
+                    descriptionField = header
+                }
+                text{
+                    table = tt_content
+                    descriptionField = bodytext
+                }
+            }
+        }
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                references.table = tt_content
+                as = images
+            }
+        }
+    }
+}

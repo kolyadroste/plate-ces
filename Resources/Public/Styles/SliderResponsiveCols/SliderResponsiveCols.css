@@ -1,0 +1,25 @@
+.frame-type-tx_plate_ces_sliderresponsivecols atomic-slider{
+    --atomic-slider-marginleftright: var(--bs-gap-xlarge, 20px);
+    --atomic-slider-bottom-spacing: var(--slider-responsive-bottom-spacing,40px);
+}
+[asrc-container]{
+    --atomic-slider-responsive-cols-gap: var(--bs-gap-large, 20px);
+}
+.plces-asrc-slide{
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+.plces-asrc-slide,
+[asrc-container]{
+    height: var(--plces-asrc-slide-min-height, 120px);
+}
+@media (max-width: 767px){
+    .plces-asrc-slide,
+    [asrc-container]{
+        height: var(--plces-asrc-slide-min-height, 180px);
+    }
+}
+.plces-asrc-slide *{
+    user-select: none;
+}

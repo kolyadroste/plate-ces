@@ -1,0 +1,2 @@
+# cat=basic//10; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath = EXT:customer_theme/Resources/Private/CEs/

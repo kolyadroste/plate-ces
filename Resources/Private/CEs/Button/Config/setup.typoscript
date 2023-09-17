@@ -1,0 +1,11 @@
+
+tt_content.tx_plate_ces_button= COA
+tt_content.tx_plate_ces_button {
+    10 =< lib.contentElement
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            0 = EXT:plate_ces/Resources/Private/CEs/Button/
+        }
+    }
+}

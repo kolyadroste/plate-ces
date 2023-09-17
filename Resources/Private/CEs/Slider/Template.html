@@ -1,0 +1,149 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+
+    <f:section name="LayoutVars">
+        <f:variable name="wrapperTag" value="section"/>
+    </f:section>
+
+
+    <f:section name="Main">
+        <f:asset.script identifier="atomic-slider" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider.min.js" priority="1"/>
+        <f:asset.script identifier="atomic-slider-slide" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slide.min.js" priority="1"/>
+        <f:asset.css identifier="plate_ces.slider" href="{assetPath}Styles/Slider/Slider.css" />
+        <f:switch expression="{sliderHeight}">
+            <f:case value="full"><f:variable name="classHeight" value="fullHeight"/></f:case>
+            <f:defaultCase><f:variable name="classHeight" value=""/></f:defaultCase>
+        </f:switch>
+
+        <f:variable name="vars" value=""/>
+        <f:if condition="{iconColor}"><f:variable name="vars" value="{vars} --bs-icon-color:var({iconColor}) !important;"/></f:if>
+        <f:if condition="{slides}">
+            <atomic-slider class="{classHeight}" style="{vars}" withnavbuttons="true" {f:if(condition:'{slides->f:count()} > 1', then:'nav-dots-top')} time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+
+                <f:if condition="{slides->f:count()} > 1">
+                    <f:asset.script identifier="atomic-slider-dotnav-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-dotnav-button.min.js" priority="1"/>
+                    <f:asset.script identifier="atomic-slider-prevnext-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-prevnext-button.min.js" priority="1"/>
+                    <atomic-slider-prevnext-button slot="previous-next" data-action="move-backwards" message="" title="Previous"><f:if condition="{prevnextIcon}">
+                        <f:variable name="iconData" value="{
+                            icon:prevnextIcon,
+                            title:'Vorheriger Slide',
+                            alt:'Vorheriger Slide',
+                            width:iconWidth,
+                            height:iconHeight}"/>
+                        <f:render partial="Atoms/Icon" arguments="{data:iconData}"/>
+                    </f:if></atomic-slider-prevnext-button>
+                    <atomic-slider-prevnext-button slot="previous-next" data-action="move-forward" message="" title="Next" ><f:if condition="{prevnextIcon}">
+                        <f:variable name="prevnextIcon" value="{
+                            icon:btIcon,
+                            title:'Nächster Slide',
+                            alt:'Nächster Slide',
+                            width:iconWidth,
+                            height:iconHeight}"/>
+                        <f:render partial="Atoms/Icon" arguments="{data:iconData}"/>
+                    </f:if></atomic-slider-prevnext-button>
+                </f:if>
+                <f:for each="{slides}" as="slide" iteration="i">
+                    <f:variable name="slideLayout" value="{data.layout}"/>
+                    <f:if condition="{slide.properties.tx_plate_ces_select1}">
+                        <f:variable name="slideLayout" value="{slide.properties.tx_plate_ces_select1}"/>
+                    </f:if>
+                    <f:variable name="imageFilter" value="{imageFilter}"/>
+                    <f:if condition="{slide.properties.tx_plate_ces_select2}">
+                            <f:variable name="imageFilter" value="{slide.properties.tx_plate_ces_select2}"/>
+                    </f:if>
+                    <f:variable name="slideLink" value="{f:uri.typolink(parameter:slide.link)}"/>
+                    <f:variable name="slideLayout" value="{data.layout}"/>
+                    <f:if condition="{slide.layout}"><f:variable name="slideLayout" value="{slide.layout}"/></f:if>
+
+
+                    <f:comment>FirstImage shouldnt be loaded lazy</f:comment>
+                    <f:variable name="imgLazy" value="lazy"/>
+                    <f:if condition="{i.isFirst}">
+                        <f:variable name="imgLazy" value="false"/>
+                    </f:if>
+
+                    <f:variable name="imgConfig" value="{
+                        1600:{w:1900,cropVariant:'default'},
+                        1400:{w:1600,cropVariant:'default'},
+                        1200:{w:1400,cropVariant:'tablet'},
+                        1000:{w:1200,cropVariant:'tablet'},
+                        600:{w:900,cropVariant:'mobile'},
+                        500:{w:550,cropVariant:'mobile'},
+                        400:{w:400,cropVariant:'mobile'}
+                    }"/>
+
+                    <f:variable name="slideData" value="{
+                        uid:'{slide.uid}',
+                        image:'{slide}',
+                        alt: slide.alternative,
+                        title: slide.title,
+                        imgLazy: '{imgLazy}',
+                        imgConfig:imgConfig,
+                        imageBlur:'{slide.properties.tx_plate_ces_blur}',
+                        layout: '{slideLayout}',
+                        imageFilter:'{imageFilter}',
+                        additionalClassesOverlay: ''
+                    }"/>
+
+                    <f:render partial="Molecules/Slides/ImageSlide" arguments="{data:slideData}" contentAs="content">
+                        <f:comment><!-- if showText is true--></f:comment>
+                        <f:if condition="{slide.properties.tx_plate_ces_check1}">
+                            <f:variable name="overlayData" value="{
+                                    initiator: 'Molecules/Slides/ImageSlide',
+                                    uid:'{slide.uid}',
+                                    settings:settings,
+                                    contentFrame: '{contentFrame}'
+                                    feEditConfig: {table:'sys_file_reference', titleField: 'title', descriptionField:'description'}
+                                }"/>
+                            <f:if condition="{data.imageBlur}">
+                                <div class="imageBlur"></div>
+                            </f:if>
+                            <f:variable name="containerLayout" value="{f:if(condition:contentFrame,then:contentFrame,else:'container')}"/>
+                            <div class="{containerLayout}">
+                                <f:render partial="Molecules/Slides/ImageSlideFigcaption" arguments="{data:overlayData}" contentAs="content">
+                                    <f:render section="FigcaptionContent" arguments="{_all}"/>
+                                </f:render>
+                            </div>
+                        </f:if>
+                    </f:render>
+                </f:for>
+            </atomic-slider>
+        </f:if>
+    </f:section>
+
+    <f:section name="FigcaptionContent">
+        <f:render partial="CEs/Slider/SliderOverlayBefore" arguments="{_all}" optional="true"/>
+        <div class="ah-richtext">
+            <f:if condition="{slide.properties.tx_plate_ces_check3} && {slide.properties.title}">
+                <f:then>
+                    <f:render partial="Header/Header" arguments="{
+                    header: slide.title,
+                    settings:settings,
+                    layout: '2',
+                    uid: slide.properties.uid,
+                    positionClass: 'align-left'
+                }" />
+                </f:then>
+                <f:else if="{slide.properties.title}">
+                    <span class="lead hero">{slide.title}</span>
+                </f:else>
+            </f:if>
+            <f:variable name="dataRichtext" value="{
+                uid: slide.uid,
+                text: slide.properties.bodytext,
+                settings:settings
+            }"/>
+            <f:render partial="Atoms/RichText" arguments="{data:dataRichtext,settings:settings}"/>
+            <f:if condition="{slide.properties.link}">
+                <f:asset.script identifier="atomic-button" type="module" src="{data.atomicAssets}/Webcomponents/atomic-button.js" priority="1"/>
+                <atomic-button wide style="margin-top:20px;">
+                    {f:if(condition: '{buttonLabel}', then:'{buttonLabel}',else:'Mehr erfahren')}
+                </atomic-button>
+            </f:if>
+        </div>
+    </f:section>
+</fluid>

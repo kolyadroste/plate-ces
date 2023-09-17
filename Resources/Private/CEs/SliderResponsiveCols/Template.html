@@ -1,0 +1,83 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+
+    <f:section name="LayoutVars">
+        <f:variable name="wrapperTag" value="section"/>
+    </f:section>
+
+
+    <f:section name="Main">
+        <f:asset.script identifier="atomic-slider" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider.min.js" priority="1"/>
+        <f:asset.script identifier="atomic-slider-responsive-cols" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-responsive-cols.min.js" priority="1"/>
+        <f:asset.css identifier="plces.slider-responsive-cols" href="{assetPath}Styles/SliderResponsiveCols/SliderResponsiveCols.css" />
+        <f:switch expression="{sliderHeight}">
+            <f:case value="full"><f:variable name="classHeight" value="fullHeight"/></f:case>
+            <f:defaultCase><f:variable name="classHeight" value=""/></f:defaultCase>
+        </f:switch>
+
+        <f:variable name="vars" value="--atomic-slider-background-color: transparent;"/>
+        <f:if condition="{slides}">
+            <atomic-slider-responsive-cols cols="0:1,500:2,1024:4,1400:4">
+                <atomic-slider class="{classHeight}" time="1000000" style="{vars}" withnavbuttons="true" time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+
+                    <f:if condition="{slides->f:count()} > 1">
+
+                    </f:if>
+                    <f:for each="{slides}" as="slide" iteration="i">
+                        <f:comment>FirstImage shouldnt be loaded lazy</f:comment>
+                        <f:variable name="imgLazy" value="lazy"/>
+                        <f:if condition="{i.isFirst}">
+                            <f:variable name="imgLazy" value="false"/>
+                        </f:if>
+
+                        <f:variable name="imgConfig" value="{
+                            1600:{w:235,cropVariant:'default'},
+                            1400:{w:235,cropVariant:'default'},
+                            1200:{w:157,cropVariant:'tablet'},
+                            1000:{w:330,cropVariant:'tablet'},
+                            600:{w:250,cropVariant:'mobile'},
+                            500:{w:550,cropVariant:'mobile'},
+                            400:{w:500,cropVariant:'mobile'}
+                        }"/>
+
+                        <f:render section="Slide" contentAs="content">
+                                <f:render section="Image" arguments="{_all}" />
+                        </f:render>
+                    </f:for>
+                </atomic-slider>
+            </atomic-slider-responsive-cols>
+        </f:if>
+    </f:section>
+
+    <f:section name="Slide">
+        <div class="plces-asrc-slide asrc-slide">
+            {content -> f:format.raw()}
+        </div>
+    </f:section>
+
+    <f:section name="Image">
+        <f:variable name="imgConfig" value="{
+            1600:{w:235,cropVariant:'default'},
+            1400:{w:235,cropVariant:'default'},
+            1200:{w:157,cropVariant:'tablet'},
+            1000:{w:330,cropVariant:'tablet'},
+            600:{w:250,cropVariant:'mobile'},
+            500:{w:550,cropVariant:'mobile'},
+            400:{w:500,cropVariant:'mobile'}
+        }"/>
+        <f:variable name="imageData" value="{
+            uid:'{slide.properties.uid}',
+            image:slide,
+            alt: slide.properties.alternative,
+            title: slide.properties.title
+            config: imgConfig,
+            draggable:'false',
+            additionalClasses: 'w-100 h-auto'
+        }"/>
+        <f:render partial="Atoms/Image" arguments="{data:imageData}" />
+    </f:section>
+</fluid>

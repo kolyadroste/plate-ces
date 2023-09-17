@@ -1,0 +1,27 @@
+:root{
+    --atomic-card-block-noimage--background: linear-gradient(160deg, #009CFB 0%, #6476E6 100%);
+    --atomic-card-block-noimage--shadow: var(--vars-shadow);
+}
+.atomic-card-block-noimage{
+    --vars-color-button-color: #6476E6;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: var(--atomic-card-block-noimage--shadow);
+    background: var(--atomic-card-block-noimage--background);
+}
+.atomic-card-block-noimage a{
+    display:block;
+    min-height:100%;
+}
+.atomic-card-block-noimage.--rounded{
+    border-radius: 1em;
+}
+.atomic-card-block-noimage .card-text *:last-child{
+    margin-bottom:0!important;
+}
+.atomic-card-block-noimage .card-text{
+    margin-bottom: 70px;
+}

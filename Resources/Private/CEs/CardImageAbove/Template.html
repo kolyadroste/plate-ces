@@ -1,0 +1,57 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+    <f:section name="Main">
+        <f:variable name="imgConfig" value="{
+            300:{w:300,cropVariant:'mobile'},
+            400:{w:400,cropVariant:'mobile'},
+            500:{w:450,cropVariant:'mobile'},
+            600:{w:550,cropVariant:'mobile'},
+            1000:{w:300,cropVariant:'default'},
+            1200:{w:600,cropVariant:'default'},
+            1400:{w:700,cropVariant:'default'},
+            1600:{w:900,cropVariant:'default'}
+        }"/>
+
+        <f:variable name="cardData" value="{
+            uid:'{data.uid}',
+            addionalClasses: 'bg {cardBgColor}'
+        }"/>
+        <f:render partial="Molecules/Cards/SimpleVertical/WrapperCard" arguments="{data: cardData}" contentAs="content">
+            <section class="card-media">
+                <f:variable name="imgConfig" value="{
+                    500:{w:'400',h:'230c',cropVariant:''},
+                    400:{w:'400',h:'230c',cropVariant:''},
+                    300:{w:'400',h:'230c',cropVariant:''}
+                }"/>
+                <f:variable name="mediaData" value="{
+                    type: 'image',
+                    media: images.0,
+                    addionalClasses: '',
+                    imgConfig: imgConfig
+                }"/>
+                <f:render partial="Molecules/Media/Media" arguments="{data: mediaData}"/>
+            </section>
+            <section class="card-content {textPadding} mb-0:last-child">
+
+                <f:if condition="{data.datetime}">
+                    <div class="d-flex vars-shy mb-2">
+                        <f:variable name="dateData" value="{
+                            date:data.datetime,
+                            format:'d. F Y'
+                        }"/>
+                        <f:render partial="Atoms/Date" arguments="{data:dateData}"/>
+                        <span>&nbsp;| ECA Monat</span>
+                    </div>
+                </f:if>
+                <f:variable name="textData" value="{
+                    text: data.bodytext
+                }"/>
+                <f:render partial="Atoms/RichText" arguments="{data:textData}"/>
+            </section>
+        </f:render>
+    </f:section>
+</fluid>

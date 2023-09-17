@@ -1,0 +1,7 @@
+atomic-slider{}
+atomic-slider.fullHeight{
+    --atomic-overlay-min-height-small: 70vh;
+    --atomic-overlay-min-height-medium: 70vh;
+    --atomic-overlay-min-height-large: 100vh;
+    --atomic-overlay-min-height-xlarge: 100vh;
+}

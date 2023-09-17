@@ -1,0 +1,29 @@
+
+tt_content.tx_plate_ces_sliderresponsivecols = COA
+tt_content.tx_plate_ces_sliderresponsivecols {
+
+    10 =< lib.ceDefault
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            0 = EXT:plate_ces/Resources/Private/CEs/SliderResponsiveCols/
+        }
+        variables {
+            contentFrame = TEXT
+            contentFrame.data = flexform: pi_flexform:settings.contentframe
+            contentFrame.ifEmpty = container
+
+            time = TEXT
+            time.data = flexform: pi_flexform:settings.time
+            time.ifEmpty = 3s
+        }
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                references.table = tt_content
+                as = slides
+            }
+        }
+    }
+}

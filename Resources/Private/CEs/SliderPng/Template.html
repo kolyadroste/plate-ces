@@ -1,0 +1,88 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+
+    <f:section name="LayoutVars">
+        <f:variable name="wrapperTag" value="section"/>
+    </f:section>
+
+
+    <f:section name="Main">
+        <f:asset.script identifier="atomic-slider" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider.min.js" priority="1"/>
+        <f:asset.script identifier="atomic-slider-slide" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slide.min.js" priority="1"/>
+        <f:asset.css identifier="plate_ces.slider-png" href="{assetPath}Styles/SliderPng/SliderPng.css" />
+        <f:switch expression="{sliderHeight}">
+            <f:case value="full"><f:variable name="classHeight" value="fullHeight"/></f:case>
+            <f:defaultCase><f:variable name="classHeight" value=""/></f:defaultCase>
+        </f:switch>
+        <f:variable name="vars" value="--atomic-slider-background-color: transparent;"/>
+        <f:if condition="{slides}">
+            <atomic-slider class="{classHeight}" time="{time}" style="{vars}" withnavbuttons="true" time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+
+                <f:if condition="{slides->f:count()} > 1">
+                    <f:asset.script identifier="atomic-slider-dotnav-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-dotnav-button.min.js" priority="1"/>
+                    <f:if condition="{showArrows}">
+                        <f:asset.script identifier="atomic-slider-prevnext-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-prevnext-button.min.js" priority="1"/>
+                        <atomic-slider-prevnext-button slot="previous-next" data-action="move-backwards" message="" title="Previous"><f:if condition="{prevnextIcon}">
+                            <f:variable name="iconData" value="{
+                            icon:prevnextIcon,
+                            title:'Vorheriger Slide',
+                            alt:'Vorheriger Slide',
+                            width:iconWidth,
+                            height:iconHeight}"/>
+                            <f:render partial="Atoms/Icon" arguments="{data:iconData}"/>
+                        </f:if></atomic-slider-prevnext-button>
+                        <atomic-slider-prevnext-button slot="previous-next" data-action="move-forward" message="" title="Next" ><f:if condition="{prevnextIcon}">
+                            <f:variable name="prevnextIcon" value="{
+                            icon:btIcon,
+                            title:'Nächster Slide',
+                            alt:'Nächster Slide',
+                            width:iconWidth,
+                            height:iconHeight}"/>
+                            <f:render partial="Atoms/Icon" arguments="{data:iconData}"/>
+                        </f:if></atomic-slider-prevnext-button>
+                    </f:if>
+                </f:if>
+                <f:for each="{slides}" as="slide" iteration="i">
+                    <f:comment>FirstImage shouldnt be loaded lazy</f:comment>
+                    <f:variable name="imgLazy" value="lazy"/>
+                    <f:if condition="{i.isFirst}">
+                        <f:variable name="imgLazy" value="false"/>
+                    </f:if>
+
+                    <f:variable name="imgConfig" value="{
+                        1600:{w:660,cropVariant:'default'},
+                        1400:{w:660,cropVariant:'default'},
+                        1200:{w:440,cropVariant:'tablet'},
+                        1000:{w:440,cropVariant:'tablet'},
+                        600:{w:600,cropVariant:'mobile'},
+                        500:{w:450,cropVariant:'mobile'},
+                        400:{w:380,cropVariant:'mobile'}
+                    }"/>
+                    <f:variable name="textImageData" value="{
+                        uid:'{slide.uid}',
+                        image:'{slide}',
+                        title:'{slide.properties.title}',
+                        bodytext:'{slide.properties.bodytext}',
+                        imgConfig: imgConfig
+                    }"/>
+
+                    <f:render section="Slide" arguments="{data:slideData}" contentAs="content">
+                        <div class="plces-sliderpng-slide">
+                            <div class="container">
+                                <f:render partial="Molecules/TextImage/TextImageCentered" arguments="{data:textImageData}" />
+                            </div>
+                        </div>
+                    </f:render>
+                </f:for>
+            </atomic-slider>
+        </f:if>
+    </f:section>
+
+    <f:section name="Slide">
+        {content -> f:format.raw()}
+    </f:section>
+</fluid>

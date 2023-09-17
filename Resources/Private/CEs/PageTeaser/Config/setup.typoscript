@@ -1,0 +1,131 @@
+lib.variables_1686989019 < lib.ceDefault.variables
+lib.variables_1686989019{
+    background = TEXT
+    background.data = flexform: pi_flexform:settings.background
+    background.ifEmpty = bg-none
+
+    sorting = TEXT
+    sorting.data = flexform: pi_flexform:settings.sorting
+    sorting.ifEmpty = bg-none;
+    layout = TEXT
+    layout.data = flexform: pi_flexform:settings.layout
+    layout.ifEmpty = bg-none
+
+    columns = TEXT
+    columns.data = flexform: pi_flexform:settings.columns
+    columns.ifEmpty = cols-3
+
+    showImage = TEXT
+    showImage.data = flexform: pi_flexform:settings.showImage
+    showImage.ifEmpty = show
+
+    showDate = TEXT
+    showDate.data = flexform: pi_flexform:settings.showDate
+    showDate.ifEmpty = hide
+}
+tt_content.tx_plate_ces_pageteaser = COA
+tt_content.tx_plate_ces_pageteaser {
+
+    // pages from selection
+    10 = COA
+    10{
+        stdWrap.if{
+            isInList.data = flexform: pi_flexform:settings.query
+            value = direct_selection
+        }
+        10 =< lib.ceDefault
+        10{
+            templateName = Template.html
+            templateRootPaths {
+                0 = EXT:plate_ces/Resources/Private/CEs/PageTeaser/
+            }
+            variables < lib.variables_1686989019
+            dataProcessing {
+                10 = B13\Menus\DataProcessing\ListMenu
+                10 {
+                    includeNotInMenu = 1
+                    pages.data = flexform: pi_flexform:settings.pages
+                    as = teaserPages
+                    depth = 4
+                    dataProcessing {
+                        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        10 {
+                            references.fieldName = media
+                            as = media
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // subpages from selection
+    20 = COA
+    20{
+        stdWrap.if{
+            isInList.data = flexform: pi_flexform:settings.query
+            value = subpages_from_selection
+        }
+        10 =< lib.ceDefault
+        10{
+            templateName = Template.html
+            templateRootPaths {
+                0 = EXT:plate_ces/Resources/Private/CEs/PageTeaser/
+            }
+            variables < lib.variables_1686989019
+            variables{
+                teaserType = TEXT
+                teaserType.value = subpages from selection
+            }
+            dataProcessing {
+                10 = B13\Menus\DataProcessing\TreeMenu
+                10 {
+                    entryPoints = 1
+                    includeNotInMenu = 1
+                    entryPoints.data = flexform: pi_flexform:settings.pages
+                    as = teaserPages
+                    depth = 1
+                    dataProcessing {
+                        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        10 {
+                            references.fieldName = media
+                            as = media
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // subpages from current page
+    30 = COA
+    30{
+        stdWrap.if{
+            isInList.data = flexform: pi_flexform:settings.query
+            value = default
+        }
+        10 =< lib.contentElement
+        10{
+            templateName = Template.html
+            templateRootPaths {
+                0 = EXT:plate_ces/Resources/Private/CEs/PageTeaser/
+            }
+            variables < lib.variables_1686989019
+            dataProcessing {
+                10 = B13\Menus\DataProcessing\TreeMenu
+                10{
+                    entryPoints.data = field:pid
+                    depth = 1
+                    as = teaserPages
+                    dataProcessing {
+                        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        10 {
+                            references.fieldName = media
+                            as = media
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

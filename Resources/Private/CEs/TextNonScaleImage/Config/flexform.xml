@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+        <!--
+            @todo (prio low)
+                some options are related to the default theme
+                    - callout .main / .contrast / .default are not generic
+                    - callout .opaque is not generic
+                    Those should be added by manipulating the flexform if the default layout is chosen
+        -->
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Text</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

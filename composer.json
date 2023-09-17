@@ -1,0 +1,30 @@
+{
+	"name": "atomicplan/plate-ces",
+	"version": "0.5.0",
+	"type": "typo3-cms-extension",
+	"description": "Plate Ces - Provide a set of contentelements",
+	"license": "GPL-2.0-or-later",
+	"keywords": ["TYPO3 CMS", "Integrators", "Site Extension", "Site Package", "TypoScript"],
+	"require": {
+		"php": "^7.4 || ^8.0",
+		"typo3/cms-core": "^11.0 || ^12.0",
+		"atomicplan/plate-atomic-assets": "^0.5",
+		"blueways/bw-icons": "^2.0"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "plate_ces"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"AtomicPlan\\PlateCes\\": "Classes/"
+		}
+	},
+	"require-dev": {
+
+	},
+	"config": {
+		"sort-packages": true
+	}
+}

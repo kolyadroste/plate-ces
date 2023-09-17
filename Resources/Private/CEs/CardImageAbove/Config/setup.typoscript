@@ -1,0 +1,29 @@
+
+tt_content.tx_plate_ces_cardimageabove = COA
+tt_content.tx_plate_ces_cardimageabove {
+    10 =< lib.ceDefault
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            0 = EXT:plate_ces/Resources/Private/CEs/CardImageAbove/
+        }
+        variables {
+            cardBgColor = TEXT
+            cardBgColor.data = flexform:pi_flexform:settings.cardBgColor
+            cardBgColor.ifEmpty =
+
+            textPadding = TEXT
+            textPadding.data = flexform:pi_flexform:settings.textPadding
+            textPadding.ifEmpty = p-4
+
+        }
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                references.table = tt_content
+                as = images
+            }
+        }
+    }
+}

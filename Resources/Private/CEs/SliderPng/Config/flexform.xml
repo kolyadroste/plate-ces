@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Einstellungen</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.time>
+                        <TCEforms>
+                            <label>Überblendungzeit (Beispiel: '3s', '3000ms')</label>
+                            <config>
+                                <type>input</type>>
+                            </config>
+                        </TCEforms>
+                    </settings.time>
+                    <settings.showArrows>
+                        <TCEforms>
+                            <label>Zeige Pfeile</label>
+                            <config>
+                                <type>check</type>>
+                            </config>
+                            <default>0</default>
+                        </TCEforms>
+                    </settings.showArrows>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

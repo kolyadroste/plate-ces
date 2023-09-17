@@ -1,0 +1,25 @@
+
+tt_content.tx_plate_ces_googlemaps= COA
+tt_content.tx_plate_ces_googlemaps {
+    10 =< lib.ceDefault
+    10{
+        templateName = GoogleMaps.html
+        templateRootPaths {
+            0 = EXT:plate_ces/Resources/Private/CEs/GoogleMaps/
+        }
+        variables {
+            textBackground = TEXT
+            textBackground.data = flexform:pi_flexform:settings.text-background
+            textBackground.ifEmpty = default
+            mapHeight = TEXT
+            mapHeight.data = flexform:pi_flexform:settings.map-height
+        }
+        dataProcessing {
+            20 = TYPO3\CMS\Frontend\DataProcessing\FlexFormProcessor
+            20{
+                fieldName = pi_flexform_2
+                as = flexform2
+            }
+        }
+    }
+}

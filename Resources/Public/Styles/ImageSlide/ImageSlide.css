@@ -1,0 +1,16 @@
+
+.a--cetype-tx_plate_ces_imageslide atomic-close *:last-child{
+    margin-bottom: 0;
+}
+.vars-default atomic-overlay{
+    --atomic-overlay--background:none;
+}
+.vars-highlighted atomic-overlay{
+    --atomic-overlay--background: #f7f7f7;
+}
+.vars-inverted atomic-overlay{
+    --atomic-overlay--background:none;
+}
+.vars-black atomic-overlay{
+    --atomic-overlay--background: #000000;
+}

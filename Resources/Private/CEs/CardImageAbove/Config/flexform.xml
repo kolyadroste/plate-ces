@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+        <!--
+            @todo (prio low)
+                some options are related to the default theme
+                    - callout .main / .contrast / .default are not generic
+                    - callout .opaque is not generic
+                    Those should be added by manipulating the flexform if the default layout is chosen
+        -->
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Einstellungen</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.cardBgColor>
+                        <TCEforms>
+                            <label>Card Hintergrund</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Default</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Primär</numIndex>
+                                        <numIndex index="1">bg-primary</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Sekundär</numIndex>
+                                        <numIndex index="1">bg-secondary</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">Tertiär</numIndex>
+                                        <numIndex index="1">bg-tertiary</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4">
+                                        <numIndex index="0">Quartär</numIndex>
+                                        <numIndex index="1">bg-quarternary</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5">
+                                        <numIndex index="0">Info</numIndex>
+                                        <numIndex index="1">bg-info</numIndex>
+                                    </numIndex>
+                                    <numIndex index="6">
+                                        <numIndex index="0">Light</numIndex>
+                                        <numIndex index="1">bg-light</numIndex>
+                                    </numIndex>
+                                    <numIndex index="7">
+                                        <numIndex index="0">Dark</numIndex>
+                                        <numIndex index="1">bg-dark</numIndex>
+                                    </numIndex>
+                                    <numIndex index="8">
+                                        <numIndex index="0">Success</numIndex>
+                                        <numIndex index="1">bg-success</numIndex>
+                                    </numIndex>
+                                    <numIndex index="9">
+                                        <numIndex index="0">Danger</numIndex>
+                                        <numIndex index="1">bg-danger</numIndex>
+                                    </numIndex>
+                                    <numIndex index="10">
+                                        <numIndex index="0">bg-none</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.cardBgColor>
+
+                    <settings.textPadding>
+                        <TCEforms>
+                            <label>Text Abstand zum Rand</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">klein</numIndex>
+                                        <numIndex index="1">p-1</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Normal</numIndex>
+                                        <numIndex index="1">p-2</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">Mehr</numIndex>
+                                        <numIndex index="1">p-3</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4">
+                                        <numIndex index="0">Groß</numIndex>
+                                        <numIndex index="1">p-4</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5">
+                                        <numIndex index="0">Größer</numIndex>
+                                        <numIndex index="1">p-5</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.textPadding>
+
+                </el>
+            </ROOT>
+         </sDEF>
+    </sheets>
+</T3DataStructure>

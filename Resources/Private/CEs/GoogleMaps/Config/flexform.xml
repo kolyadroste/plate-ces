@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Karte</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.map-iframe>
+                        <TCEforms>
+                            <label>Adresse Karte</label>
+                            <config>
+                                <type>text</type>
+                            </config>
+                        </TCEforms>
+                    </settings.map-iframe>
+                    <settings.map-height>
+                        <TCEforms>
+                            <label>Höhe Karte</label>
+                            <config>
+                                <type>input</type>>
+                            </config>
+                        </TCEforms>
+                    </settings.map-height>
+                </el>
+            </ROOT>
+        </sDEF>
+        <more>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Einstellungen</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.active>
+                        <TCEforms>
+                            <label>Button aktiv?</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.active>
+                    <settings.layout>
+                        <TCEforms>
+                            <label>Button Layout</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Abgerundet</numIndex>
+                                        <numIndex index="1">wide</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.layout>
+                    <settings.label>
+                        <TCEforms>
+                            <label>Button Text</label>
+                            <config>
+                                <type>input</type>
+                                <default>Hier gehts weiter</default>
+                            </config>
+                        </TCEforms>
+                    </settings.label>
+
+                    <settings.minwidth>
+                        <TCEforms>
+                            <label>Mindestbreite</label>
+                            <config>
+                                <type>input</type>
+                            </config>
+                        </TCEforms>
+                    </settings.minwidth>
+
+                    <settings.link>
+                        <TCEforms>
+                            <label>Link</label>
+                            <config>
+                                <type>input</type>>
+                                <renderType>inputLink</renderType>
+                            </config>
+                        </TCEforms>
+                    </settings.link>
+                    <settings.align>
+                        <TCEforms>
+                            <label>Ausrichtung</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard (Mittig)</numIndex>
+                                        <numIndex index="1">text-center</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Links</numIndex>
+                                        <numIndex index="1">text-left</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Rechts</numIndex>
+                                        <numIndex index="1">text-right</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.align>
+                    <settings.color>
+                    <TCEforms>
+                        <label>Farbe</label>
+                        <config>
+                            <type>select</type>>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <numIndex index="0">Default</numIndex>
+                                    <numIndex index="1"></numIndex>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </TCEforms>
+                </settings.color>
+                </el>
+            </ROOT>
+        </more>
+    </sheets>
+</T3DataStructure>

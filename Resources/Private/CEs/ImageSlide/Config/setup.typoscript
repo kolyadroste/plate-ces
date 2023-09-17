@@ -1,0 +1,70 @@
+
+tt_content.tx_plate_ces_imageslide = COA
+tt_content.tx_plate_ces_imageslide {
+    10 =< lib.ceDefault
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            1684244400 = EXT:plate_ces/Resources/Private/CEs/ImageSlide/
+        }
+        variables {
+            textLayout = TEXT
+            textLayout.data = flexform:pi_flexform:settings.text-layout
+            textLayout.ifEmpty = vars-inverted
+            textBackgroundAlpha = TEXT
+            textBackgroundAlpha.data = flexform:pi_flexform:settings.text-background-alpha
+            textBackgroundAlpha.ifEmpty = 0
+            overlayShadow= TEXT
+            overlayShadow.data = flexform:pi_flexform:settings.overlay-shadow
+            overlayShadow.ifEmpty = 0
+            ceWidth = TEXT
+            ceWidth.data = field:plate_cedefaults_ce_width
+            ceWidth.ifEmpty = full
+
+            contentFrame = TEXT
+            contentFrame.data = flexform:pi_flexform:settings.contentFrame
+            contentFrame.ifEmpty = container
+
+            showPageTitle = TEXT
+            showPageTitle.field = tx_plate_ces_check1
+            pageTitle = TEXT
+            pageTitle.data = page:title
+            pageDescription = TEXT
+            pageDescription.data = page:description
+
+            slideHeight = TEXT
+            slideHeight.data = flexform: pi_flexform:settings.height
+            slideHeight.ifEmpty =
+
+
+        }
+        settings{
+            feEditing{
+                header{
+                    table = tt_content
+                    descriptionField = header
+                }
+                text{
+                    table = tt_content
+                    descriptionField = bodytext
+                }
+            }
+        }
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                references.table = tt_content
+                as = images
+
+                dataProcessing {
+                    10 = TYPO3\CMS\Frontend\DataProcessing\TextProcessor
+                    10 {
+                        references.fieldName  = showinview
+                        as = showinview
+                    }
+                }
+            }
+        }
+    }
+}

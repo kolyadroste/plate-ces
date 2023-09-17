@@ -1,0 +1,46 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+        xmlns:ac="http://typo3.org/ns/Atomicplan\PlateAtomicAssets\ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+    <f:section name="Main">
+        <f:if condition="{infoBlocks}">
+            <f:if condition="{gridLayout}=='grid'">
+                <f:then>
+                    <f:asset.css identifier="ac.grid.nums" href="{atomicAssets}Styles/components/ac.grid.nums.min.css" />
+                    <f:variable name="gridLayoutClass" value="ac-grid-n::cols-{gridColumns}"/>
+                </f:then>
+                <f:else>
+                    <f:asset.css identifier="ah.cols" href="{atomicAssets}Styles/helpers/ah.cols.min.css" />
+                    <f:variable name="gridLayoutClass" value="ah-cols::{gridColumns} a-margin-bottom::childs smd(a-margin-bottom::small::childs)"/>
+                </f:else>
+            </f:if>
+
+            <f:asset.css identifier="ah.remove-margin-bottom" href="{atomicAssets}Styles/helpers/ah.remove-margin-bottom.min.css" />
+            <div class="@container">
+                <div class="{gridLayoutClass} a-gap">
+                    <f:for each="{infoBlocks}" as="infoBlock">
+                        <div class="vars-highlighted a-border a-background a-padding a-display::flex a-justify-content::center">
+                            <div class="text-inner-wrap ah-remove-margin-bottom::last-child vars-reduced-p-margin">
+                                <f:render
+                                        partial="Header/Header"
+                                        arguments="{
+                                header: '{infoBlock.data.header}',
+                                layout: '3',
+                                default: '{settings.defaultHeaderType + 1}',
+                                additionalClasses: 'h5 a-margin-bottom::extra-small a-text-align::{titleAlign}'
+                            }"
+                                />
+                                <f:format.html>{infoBlock.data.description}</f:format.html>
+                            </div>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+
+
+        </f:if>
+    </f:section>
+</fluid>

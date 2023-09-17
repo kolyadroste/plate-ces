@@ -1,0 +1,49 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:asset.script identifier="atomic-slide" type="module" src="{item.atomicAssets}/Webcomponents/atomic-slide.js" priority="1"/>
+    <f:asset.script identifier="atomic-overlay" type="module" src="{item.atomicAssets}/Webcomponents/atomic-overlay.js" priority="1"/>
+    <f:asset.script identifier="atomic-close" type="module" src="{item.atomicAssets}/Webcomponents/atomic-close.js" priority="1"/>
+    <f:asset.script identifier="atomic-slide-observer">
+        <f:format.raw>let slides = document.querySelectorAll("atomic-slide[inViewObjection]")</f:format.raw>
+        slides.forEach((slide)=>{
+        slide.addEventListener('atomic-slide.isInView', ()=>{
+        let overlay = slide.querySelector('atomic-overlay');
+        if(overlay){
+            overlay.classList.add('begin');
+        }
+
+        });
+        });
+    </f:asset.script>
+
+    <f:if condition="{item.image}">
+        <f:variable name="vars" value=""/>
+        <f:if condition="{item.textLayout}">
+            <f:variable name="vars" value="{item.textLayout}"/>
+        </f:if>
+        <atomic-slide {item.text-background} inViewObjection id="atomic-slide-{item.uid}" class="{vars}">
+            <f:variable name="config" value="{
+                            300:{w:400,cropVariant:'mobile'},
+                            400:{w:400,cropVariant:'mobile'},
+                            500:{w:500,cropVariant:'mobile'},
+                            600:{w:500,cropVariant:'mobile'},
+                            1000:{w:950,cropVariant:'default'},
+                            1200:{w:1200,cropVariant:'default'},
+                            1400:{w:1400,cropVariant:'default'},
+                            1600:{w:1600,cropVariant:'default'}
+                        }"/>
+            <f:if condition="{item.image}">
+                <f:render partial="LazyImage" arguments='{image:item.image,config:config,additionalAttributes:"slot=image",additionalClasses:"{f:if(condition:\'{item.blurImage}\',then:\'atomic-filter-blur\')}"}'/>
+            </f:if>
+
+
+            <f:if condition="{item.showText}">
+                <f:render partial="Slides/ImageSlideFigcaption" arguments="{item:item}"/>
+            </f:if>
+
+
+        </atomic-slide>
+    </f:if>
+</fluid>

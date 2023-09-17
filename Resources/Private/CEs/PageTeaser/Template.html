@@ -1,0 +1,80 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default" />
+
+    <f:section name="LayoutVars">
+        <f:variable name="wrapperTag" value="section"/>
+    </f:section>
+
+    <f:section name="Main">
+        <f:asset.script identifier="atomic-equalize" type="module" src="EXT:plate_atomic_assets/Resources/Public/Webcomponents/Dist/atomic-equalize.min.js" />
+        <f:asset.css identifier="ac.grid.nums" href="EXT:plate_atomic_assets/Resources/Public/atomic-components/ac.grid.nums.css" />
+        <f:asset.css identifier="pces.page-teaser" href="{assetPath}Styles/PageTeaser/page-teaser.css" />
+        <atomic-equalize selector="[molCardSimpleVerticalWrapperCard]" breakpoints="980::on">
+            <div class="@container">
+                <div class="plate_ces-page-teaser ac-grid-n::{columns} gap-medium">
+                    <f:switch expression="{flexform.settings.query}">
+                        <f:defaultCase><f:render section="default" arguments="{_all}"/></f:defaultCase>
+                    </f:switch>
+                </div>
+            </div>
+        </atomic-equalize>
+    </f:section>
+
+    <f:section name="default">
+        <f:for each="{teaserPages}" as="teaser">
+            <div class="grid-entry">
+                <f:switch expression="{layout}">
+                    <f:case value="TeaserHorizontal">
+                        horizontal
+                    </f:case>
+                    <f:defaultCase>
+                        <f:variable name="backgroundClass" value="{f:if(condition: '{background}', then: 'bg {background}', else: '')}"/>
+                        <f:variable name="cardData" value="{
+                            uid: teaser.uid,
+                            link:'{f:uri.page(pageUid: teaser.uid)}',
+                            additionalClasses: '{backgroundClass}'
+                        }"/>
+                        <f:render partial="Molecules/Cards/SimpleVertical/WrapperCard" arguments="{data:cardData}" contentAs="content">
+                            <section class="card-media">
+                                <f:variable name="imgConfig" value="{
+								500:{w:'400',h:'230c',cropVariant:''},
+								400:{w:'400',h:'230c',cropVariant:''},
+								300:{w:'400',h:'230c',cropVariant:''}
+							}"/>
+                                <f:variable name="mediaData" value="{
+								type: 'image',
+								media: teaser.media.0,
+								addionalClasses: '',
+								imgConfig: imgConfig
+							}"/>
+                                <f:render partial="Molecules/Media/Media" arguments="{data: mediaData}"/>
+                            </section>
+                            <section class="card-content p-big mb-0:last-child ">
+                                <h2 class="h3">{teaser.title}</h2>
+                                <f:if condition="{teaser.datetime} && {flexform.settings.showDate}">
+                                    <div class="d-flex vars-shy mb-2">
+                                        <f:variable name="dateData" value="{
+                                            date:teaser.datetime,
+                                            format:'d. F Y'
+                                        }"/>
+                                        <f:render partial="Atoms/Date" arguments="{data:dateData}"/>
+                                    </div>
+                                </f:if>
+                                <f:variable name="paragraphData" value="{
+                                    text:teaser.description,
+                                    cropLength: 150,
+                                    allowedTags:'bold'
+								}"/>
+                                <f:render partial="Atoms/Paragraph" arguments="{data:paragraphData}"/>
+                            </section>
+                        </f:render>
+                    </f:defaultCase>
+                </f:switch>
+            </div>
+        </f:for>
+    </f:section>
+</fluid>
+

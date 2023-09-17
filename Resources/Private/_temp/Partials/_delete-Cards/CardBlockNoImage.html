@@ -1,0 +1,72 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+  <f:comment>
+    item:{
+    uid: number,
+    title: string,
+    layout: string,
+    description: string,
+    link: integer,
+    target: string
+    date: integer,
+    assetPath: string
+    }
+  </f:comment>
+  <f:asset.css identifier="atomic-card-block-noimage" href="{item.atomicAssets}/Styles/Cards/atomic-card-block-noimage.css" />
+  <f:asset.script identifier="atomic-button" type="module" src="{item.atomicAssets}/Webcomponents/atomic-button.js" priority="1"/>
+  <f:if condition="{item.imgConfig}">
+    <f:variable name="imgConfig" value="{item.imgConfig}"/>
+  </f:if>
+  <f:variable name="headerLayout" value="{item.layout}"/>
+  <f:if condition="{!headerLayout}">
+    <f:variable name="headerLayout" value="2"/>
+  </f:if>
+  <article id="article-{item.uid}" class="atomic-card a-background atomic-card-block-noimage">
+
+    <f:if condition="{item.link}">
+      <f:then>
+        <a href="{item.link}" target="{f:if(condition: 'item.target',then:item.target,else:'_self')}" title="Go to page {item.title}">
+          <f:render section="Contents" arguments="{_all}"/>
+        </a>
+      </f:then>
+      <f:else>
+        <f:render section="Contents" arguments="{_all}"/>
+      </f:else>
+    </f:if>
+
+  </article>
+
+  <f:section name="Contents">
+    <div class="a-padding">
+      <div class="card-title">
+        <f:render
+                partial="Header/Header"
+                arguments="{
+                            header: '{item.title}',
+                            layout: item.layout,
+                            default: '{settings.defaultHeaderType + 1}',
+                            additionalClasses: 'h2 a-margin-bottom::extra-small'
+                        }"
+        />
+      </div>
+      <div class="card-text">
+        <f:if condition="{item.date}">
+          <f:render
+                  partial="Date"
+                  arguments="{date:item.date,iconPath:'EXT:plate_ces/Resources/Public/'}"
+          />
+        </f:if>
+        <f:if condition="{item.description}">
+          <f:format.html>{item.description}</f:format.html>
+        </f:if>
+      </div>
+      <f:if condition="{item.showButton}">
+        <atomic-button wide>
+          {f:if(condition: '{item.buttonName}', then:'{item.buttonName}',else:'Mehr erfahren')}
+        </atomic-button>
+      </f:if>
+    </div>
+  </f:section>
+</fluid>

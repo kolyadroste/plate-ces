@@ -1,0 +1,25 @@
+.pces-tncimg{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    gap: var(--bs-gap-medium, 40px);
+}
+.pces-tncimg.-centered{
+    align-items: center;
+}
+pces-tncimg-text{
+    flex-grow:1;
+}
+.pces-tncimg-text-inner{
+    width: 100%;
+}
+/* Image Orientations */
+.pces-tncimg.-image-right .pces-tncimg-image{
+    order: 1;
+}
+@media (min-width: 768px) {
+    .pces-tncimg{
+        gap: var(--bs-gap-xxlarge, 40px);
+        flex-direction: row;
+    }
+}

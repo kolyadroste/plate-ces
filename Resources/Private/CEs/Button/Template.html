@@ -1,0 +1,25 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default" />
+
+    <f:section name="Main">
+        <f:asset.script identifier="atomic-button" type="module" src="{item.atomicAssets}/Webcomponents/atomic-button.js" priority="1"/>
+        <f:if condition="{data.bodytext}">
+            <f:format.html>{data.bodytext}</f:format.html>
+        </f:if>
+
+        <div class="{flexform.settings.align}">
+            <atomic-button {flexform.settings.layout} style="{f:if(condition:flexform.settings.minwidth,then:'min-width:{flexform.settings.minwidth}px; text-align:center;')}">
+                <f:link.typolink parameter="{flexform.settings.link}" class="{f:if(condition:flexform.settings.minwidth,then:'text-center a-block a-width-full')}" target="{item.target}" title="{flexform.settings.label}">
+                    {f:if(condition: '{flexform.settings.label}', then:'{flexform.settings.label}',else:'Mehr')}
+                </f:link.typolink>
+            </atomic-button>
+        </div>
+
+    </f:section>
+
+
+</fluid>
+

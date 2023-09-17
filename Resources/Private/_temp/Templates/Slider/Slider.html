@@ -1,0 +1,54 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+
+    <f:section name="LayoutVars">
+        <f:variable name="wrapperTag" value="section"/>
+    </f:section>
+
+
+    <f:section name="Main">
+        <f:asset.script identifier="atomic-slider" type="module" src="{atomicAssets}/Webcomponents/atomic-slider.js" priority="1"/>
+        <f:asset.script identifier="atomic-slider-slide" type="module" src="{atomicAssets}/Webcomponents/atomic-slider-slide.js" priority="1"/>
+
+        <f:if condition="{slides}">
+            <atomic-slider withnavbuttons="true" {f:if(condition:'{slides->f:count()} > 1', then:'nav-dots-top')} time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+
+                <f:if condition="{slides->f:count()} > 1">
+                    <f:asset.script identifier="atomic-slider-dotnav-button" type="module" src="{atomicAssets}/Webcomponents/atomic-slider-dotnav-button.js" priority="1"/>
+                    <f:asset.script identifier="atomic-slider-prevnext-button" type="module" src="{atomicAssets}/Webcomponents/atomic-slider-prevnext-button.js" priority="1"/>
+                    <atomic-slider-prevnext-button slot="previous-next" data-action="move-backwards" message="" title="Previous"></atomic-slider-prevnext-button>
+                    <atomic-slider-prevnext-button slot="previous-next" data-action="move-forward" message="" title="Next" ></atomic-slider-prevnext-button>
+                </f:if>
+                <f:for each="{slides}" as="slide">
+                    <atomic-slider-slide id="y1">
+                        <f:variable name="item" value="{
+                            uid:'{slide.uid}',
+                            title:'{slide.title}',
+                            bodytext:'{slide.description}',
+                            textBackground: 'colorizeImage',
+                            textBackgroundAlpha: '1',
+                            text-frame-margin: '2rem',
+                            textalign-horizontal: 'center',
+                            textalign-vertical: 'center',
+                            text-frame-width: '25%',
+                            assetPath: '{cesAssets}',
+                            atomicAssets: '{atomicAssets}',
+                            image:'{slide}',
+                            link: '{f:uri.typolink(parameter:slide.link)}',
+                            showButton:1,
+                            blurImage:'{slide.properties.tx_plate_ces_blur}',
+                            showText: '{slide.properties.tx_plate_ce_check1}',
+                            feEditConfig: {table:'sys_file_reference', titleField: 'title', descriptionField:'description'},
+                            additionalClassesOverlay: 'vars-reduced-text-margins'
+                        }"/>
+                        <f:render partial="Slides/ImageSlide" arguments="{item:item}"/>
+                    </atomic-slider-slide>
+                </f:for>
+            </atomic-slider>
+        </f:if>
+    </f:section>
+</fluid>

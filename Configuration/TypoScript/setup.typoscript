@@ -1,0 +1,26 @@
+lib.ceDefault =< lib.contentElement
+lib.ceDefault {
+    templateName = Default
+    partialRootPaths {
+        1672956120 = EXT:plate_partials/Resources/Private/Partials/
+        1672956129 = EXT:plate_ce/Resources/Private/Partials/
+    }
+    layoutRootPaths {
+        1683856173 = EXT:plate_ces/Resources/Private/Layouts/
+    }
+    variables{
+        atomicAssets = TEXT
+        atomicAssets.value = EXT:plate_atomic_assets/Resources/Public/
+        assetPath= TEXT
+        assetPath.value = EXT:plate_ces/Resources/Public/
+    }
+    dataProcessing {
+        1100 = TYPO3\CMS\Frontend\DataProcessing\SiteProcessor
+        1110 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+        1120 = TYPO3\CMS\Frontend\DataProcessing\FlexFormProcessor
+        1120{
+            fieldName = pi_flexform
+            as = flexform
+        }
+    }
+}

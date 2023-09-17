@@ -1,0 +1,56 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+        xmlns:ac="http://typo3.org/ns/Atomicplan\PlateAtomicAssets\ViewHelpers"
+>
+    <f:layout name="Default"/>
+
+    <f:section name="Main">
+        <f:if condition="{infoBlocks}">
+            <f:if condition="{gridLayout}=='grid'">
+                <f:then>
+                    <f:asset.css identifier="ac.grid.nums" href="{atomicAssets}atomic-components/ac.grid.nums.min.css" />
+                    <f:variable name="gridLayoutClass" value="ac-grid-n::cols-{gridColumns}"/>
+                </f:then>
+                <f:else>
+                    <f:asset.css identifier="ah.cols" href="{atomicAssets}Styles/helpers/ah.cols.min.css" />
+                    <f:variable name="gridLayoutClass" value="ah-cols::{gridColumns}"/>
+                </f:else>
+            </f:if>
+
+            <f:asset.css identifier="ac.card" href="{atomicAssets}atomic-components/ac.card.css" />
+            <f:asset.css identifier="plce.info-blocks" href="{assetPath}Styles/InfoBlocks/InfoBlocks.css" />
+            <div class="@container">
+                <div class="{gridLayoutClass} {gridGap}">
+
+                    <f:for each="{infoBlocks}" as="infoBlock">
+                        <div class="ac-card p-4 mb-4 d-flex justify-content-center">
+                            <div class="text-inner-wrap vars-reduced-p-margin mb-0:last-child ">
+                                <f:comment>{infoBlock}</f:comment>
+                                <f:variable name="iconData" value="{
+                                    icon: '{infoBlock.data.tx_plate_ces_icon}',
+                                    width: '50',
+                                    height: '50'
+                                }" />
+                                <f:render
+                                    partial="Atoms/Icon"
+                                    arguments="{data: iconData}"
+                                />
+                                <f:render
+                                    partial="Header/Header"
+                                    arguments="{
+                                    header: '{infoBlock.data.header}',
+                                    layout: '3',
+                                    default: '{settings.defaultHeaderType}',
+                                    additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
+                                }"
+                                />
+                                <f:format.html>{infoBlock.data.description}</f:format.html>
+                            </div>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </f:if>
+    </f:section>
+</fluid>

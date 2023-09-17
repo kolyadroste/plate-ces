@@ -1,0 +1,11 @@
+.plate_ces-page-teaser  [molcardsimpleverticalwrappercard] .card-media img,
+.plate_ces-page-teaser  [molcardsimpleverticalwrappercard] .card-content{
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.plate_ces-page-teaser [molcardsimpleverticalwrappercard] a:hover .card-media img{
+    transform: perspective(1000px) translateZ(21px);
+    opacity: 0.8;
+}
+.plate_ces-page-teaser [molcardsimpleverticalwrappercard] a:hover .card-content{
+    transform: perspective(1000px) translateY(-5px);
+}

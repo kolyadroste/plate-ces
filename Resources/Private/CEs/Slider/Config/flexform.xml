@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Einstellungen</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.imageFilter>
+                        <TCEforms>
+                            <label>Bild Filter</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Dunkler</numIndex>
+                                        <numIndex index="1">darken</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.imageFilter>
+                    <settings.sliderHeight>
+                        <TCEforms>
+                            <label>Höhe</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Volle Höhe</numIndex>
+                                        <numIndex index="1">full</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.sliderHeight>
+                    <settings.time>
+                        <TCEforms>
+                            <label>Überblendungzeit (Beispiel: '3s', '3000ms')</label>
+                            <config>
+                                <type>input</type>>
+                            </config>
+                        </TCEforms>
+                    </settings.time>
+                    <settings.titleLayout>
+                        <TCEforms>
+                            <label>Typ Überschrift</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">H1</numIndex>
+                                        <numIndex index="1">.h1</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">H2</numIndex>
+                                        <numIndex index="1">.h2</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">H3</numIndex>
+                                        <numIndex index="1">.h3</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4">
+                                        <numIndex index="0">H4</numIndex>
+                                        <numIndex index="1">.h4</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5">
+                                        <numIndex index="0">H5</numIndex>
+                                        <numIndex index="1">.h5</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.titleLayout>
+                </el>
+            </ROOT>
+        </sDEF>
+        <expert>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Experte</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.buttonLabel>
+                        <TCEforms>
+                            <label>Buttonlabel</label>
+                            <config>
+                                <type>input</type>>
+                            </config>
+                        </TCEforms>
+                    </settings.buttonLabel>
+                    <settings.contentframe>
+                        <TCEforms>
+                            <label>Rahmen Inhaltsbereich</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">volle Breite</numIndex>
+                                        <numIndex index="1">container-fluid</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Inhalts-Breite</numIndex>
+                                        <numIndex index="1">container</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.contentframe>
+                    <settings.prevnextIcon>
+                        <TCEforms>
+                            <label>PrevNext Icon</label>
+                            <config>
+                                <type>input</type>>
+                                <renderType>iconSelection</renderType>
+                            </config>
+                        </TCEforms>
+                    </settings.prevnextIcon>
+                    <settings.iconColor>
+                        <TCEforms>
+                            <label>PrevNext-Icon farbe</label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <itemsProcFunc>AtomicPlan\PlateCes\Utility\FlexTCADefaults->bsColorVars</itemsProcFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.iconColor>
+
+                    <settings.iconWidth>
+                        <TCEforms>
+                            <label>PrevNext-Icon breite</label>
+                            <config>
+                                <type>input</type>
+                            </config>
+                        </TCEforms>
+                    </settings.iconWidth>
+
+                    <settings.iconHeight>
+                        <TCEforms>
+                            <label>PrevNext-Icon höhe</label>
+                            <config>
+                                <type>input</type>
+                            </config>
+                        </TCEforms>
+                    </settings.iconHeight>
+                </el>
+            </ROOT>
+        </expert>
+    </sheets>
+</T3DataStructure>

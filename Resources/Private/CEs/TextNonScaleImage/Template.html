@@ -1,0 +1,58 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:bk2k="http://typo3.org/ns/BK2K/BootstrapPackage/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Header" />
+<f:section name="Main">
+    <f:asset.css identifier="pces.pces-tncimg" href="{assetPath}Styles/TextNonScaleImage/pces-tncimg.css" priority="1"/>
+
+    <f:asset.css identifier="bs.buttons" href="EXT:plate_atomic_assets/Resources/Public/atomic-bootstrap/Dist/components/buttons.css" />
+    <f:variable name="imageConfig">{settings.responsiveimages.contentelements.textpic.centered_right}</f:variable>
+    <bk2k:data.imageVariants as="variants" variants="{variants}" multiplier="{imageConfig.multiplier}" gutters="{imageConfig.gutters}" corrections="{imageConfig.corrections}" />
+
+    <f:switch expression="{data.imageorient}">
+        <f:case value="25">
+            <f:variable name="imageOrientation" value="-image-right"/>
+        </f:case>
+        <f:case value="26"></f:case>
+        <f:case value="125">
+            <f:variable name="imageOrientation" value="-image-right"/>
+            <f:variable name="valign" value="-centered"/>
+        </f:case>
+        <f:defaultCase>
+            <f:variable name="imageOrientation" value=""/>
+            <f:variable name="valign" value="-centered"/>
+        </f:defaultCase>
+    </f:switch>
+
+    <f:render section="ImageRight" arguments="{_all}"/>
+
+
+
+    <f:section name="ImageRight" >
+        <div class="pces-tncimg {valign} {imageOrientation}">
+            <div class="pces-tncimg-item pces-tncimg-image">
+                <f:variable name="width" value="400" />
+                <f:if condition="{imagewidth}"><f:variable name="width" value="{imagewidth}" /></f:if>
+
+                <f:variable name="imgConfig" value="{
+                    500:{w:width,cropVariant:''},
+                    400:{w:width,cropVariant:''},
+                    300:{w:width,cropVariant:''}
+                }"/>
+                <f:variable name="imageData" value="{
+                image: images.0,
+                config: imgConfig,
+                additionalClasses: ''
+            }"/>
+                <f:render partial="Atoms/Image" arguments="{data: imageData}"/>
+            </div>
+            <div class="pces-tncimg pces-tncimg-text">
+                <div class="pces-tncimg-text-inner">
+                    <f:render partial="Header/All" arguments="{_all}" />
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </div>
+            </div>
+        </div>
+    </f:section>
+
+</f:section>
+</html>

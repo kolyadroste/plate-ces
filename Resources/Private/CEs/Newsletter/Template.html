@@ -1,0 +1,22 @@
+<fluid
+        data-namespace-typo3-fluid="true"
+        xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+>
+    <f:layout name="Default" />
+
+    <f:section name="Main">
+        <f:asset.css identifier="plate_ces.slider" href="{assetPath}Styles/Newsletter/Newsletter.css" />
+
+        <f:if condition="{flexform.settings.sendBtTitle}">
+            <f:variable name="submitTitle" value="{flexform.settings.sendBtTitle}"/>
+        </f:if>
+        <form class="pces-newsletter-form">
+            <input type="text" class="w-100 mb-big px-3 py-2" name="tx_pcesnewsletter_newsletter[newsletter]" value="" placeholder="Email"/>
+            <input class="btn btn-primary" type="submit">{submitTitle}</input>
+        </form>
+
+    </f:section>
+
+
+</fluid>
+
