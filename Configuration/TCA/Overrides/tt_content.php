@@ -8,12 +8,16 @@ defined('TYPO3') or die();
 
 call_user_func(function ($defaultExtension = 'plate_ces', $cePath = '/Resources/Private/CEs/', $configPath = '/Config/') {
 
+    $extPath =  \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('plate_ces');
+    $cesPath = $extPath .'Resources/Private/CEs/';
+    $ces = \AtomicPlan\PlateCes\Utility\TcaHelpers::getSubFolderNames($cesPath);
+
     // todo: put helpers into a class
-    include(ATOMIC_PLATECES_PATH . 'Configuration/TCA/Utilities/TcaFieldHelper.php');
-    include(ATOMIC_PLATECES_PATH . 'Configuration/TCA/Utilities/DefinePluginHelper.php');
+    include($extPath . 'Configuration/TCA/Utilities/TcaFieldHelper.php');
+    include($extPath . 'Configuration/TCA/Utilities/DefinePluginHelper.php');
 
     /* plugin Configuration */
-    $layoutElementsPath = ATOMIC_PLATECES_PATH . $cePath;
+    $layoutElementsPath = $extPath . $cePath;
 
     // Get the custom path from extension configuration
     $customPath = GeneralUtility::makeInstance(ExtensionConfiguration::class)
@@ -24,7 +28,7 @@ call_user_func(function ($defaultExtension = 'plate_ces', $cePath = '/Resources/
 
 
     // Merge with default CES
-    $ces = array_unique(array_merge(ATOMIC_PLATECES_CES, \AtomicPlan\PlateCes\Utility\TcaHelpers::getSubFolderNames($absCustomPath)));
+    $collectedCes = $absCustomPath ? array_unique(array_merge($ces, \AtomicPlan\PlateCes\Utility\TcaHelpers::getSubFolderNames($absCustomPath))) : $ces;
 
     $requiredCeFiles = [
         'tt_content.php',
@@ -33,7 +37,7 @@ call_user_func(function ($defaultExtension = 'plate_ces', $cePath = '/Resources/
         'config.json',
     ];
 
-    foreach ($ces as $ce) {
+    foreach ($collectedCes as $ce) {
         // check if override Path exists and if the required files are there
         if(is_dir($absCustomPath . '/' . $ce)){
             $currPath = $absCustomPath . '/' . $ce;
@@ -42,7 +46,7 @@ call_user_func(function ($defaultExtension = 'plate_ces', $cePath = '/Resources/
         }else{
             $extension = $defaultExtension;
             $extCePath = 'EXT:' .$extension .$cePath .$ce;
-            $currPath = ATOMIC_PLATECES_PATH . $cePath .$ce;
+            $currPath = $extPath . $cePath .$ce;
         }
 
         if(!TcaHelpers::checkFilesExist($currPath .$configPath , $requiredCeFiles)){
