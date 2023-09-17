@@ -64,7 +64,7 @@ call_user_func(function($defaultExtension = 'plate_ces', $configPath = '/Config/
         }else{
             $extension = $defaultExtension;
             $extCePath = 'EXT:plate_ces/Resources/Private/CEs/';
-            $absPath = ATOMIC_PLATECES_PATH . 'Resources/Private/CEs/' . $folderName;
+            $absPath = $extPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('plate_ces') . 'Resources/Private/CEs/' . $folderName;
         }
 
         $jsonData = file_get_contents($absPath .'/Config/config.json');
