@@ -39,8 +39,8 @@ call_user_func(function ($defaultExtension = 'plate_ces', $cePath = '/Resources/
 
     foreach ($collectedCes as $ce) {
         // check if override Path exists and if the required files are there
-        if(is_dir($absCustomPath . '/' . $ce)){
-            $currPath = $absCustomPath . '/' . $ce;
+        if(is_dir($absCustomPath . $ce)){
+            $currPath = $absCustomPath . $ce;
             $extension = $overrideExt;
             $extCePath = $absCustomPath . $ce;
         }else{

@@ -10,11 +10,6 @@ $plugin_showfields = '--palette--;;general,--palette--;;headers,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames';
 
-$pp_additional_columns = [
-
-];
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $pp_additional_columns);
-
 
 // Configure the default backend fields for the content element
 $GLOBALS['TCA']['tt_content']['types'][$plugin] = [
