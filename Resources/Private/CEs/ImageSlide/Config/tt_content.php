@@ -47,123 +47,157 @@ $newSysFileReferenceColumns = [
     'imageSlidePalette', 'alternative, title');
 
 // Configure the default backend fields for the content element
-$GLOBALS['TCA']['tt_content']['types'][$plugin] = [
-    'showitem' => $plugin_showfields,
-    'columnsOverrides' => [
-        'header' => [
-            'label' => 'Bezeichner (Nur für das Typo3 Backend)'
-        ],
-        'bodytext' => [
-            'config' => [
-                'enableRichtext' => true,
-                'richtextConfiguration' => 'default'
-            ]
-        ],
-        'layout' => [
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    ['Standard2', ''],
-                    ['Zentriert', 'as-center-center'],
-                    ['Zentriert oben', 'as-center-top'],
-                    ['Zentriert unten', 'as-center-bottom'],
-                    ['Links unten', 'as-left-bottom'],
-                    ['Links mitte', 'as-left-center'],
-                    ['Links oben', 'as-left-top'],
-                    ['Rechts unten', 'as-right-bottom'],
-                    ['Rechts mitte', 'as-right-center'],
-                    ['Rechts oben', 'as-right-top'],
-                    ['Zentriert auf Hintergrund', 'as-center-center'],
-                ],
-            ]
-        ],
-        'image' => [
-            'label' => 'Bild',
-            'config' => [
-                'maxitems' => 15,
-                'overrideChildTca' => [
-                    'types' => [
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
+// Configure the default backend fields for the content element
+$GLOBALS['TCA']['tt_content']['types'][$plugin] = array_replace_recursive(
+    $GLOBALS['TCA']['tt_content']['types'][$plugin],
+    [
+        'showitem' => $plugin_showfields,
+        'columnsOverrides' => [
+            'header' => [
+                'label' => 'Bezeichner (Nur für das Typo3 Backend)'
+            ],
+            'bodytext' => [
+                'config' => [
+                    'enableRichtext' => true,
+                    'richtextConfiguration' => 'default'
+                ]
+            ],
+            'layout' => [
+                'config' => [
+                    'type' => 'select',
+                    'renderType' => 'selectSingle',
+                    'items' => [
+                        [
+                            'label' => 'Standard',
+                            'value' => '',
+                        ],
+                        [
+                            'label' => 'Zentriert',
+                            'value' => 'as-center-center',
+                        ],
+                        [
+                            'label' => 'Zentriert oben',
+                            'value' => 'as-center-top',
+                        ],
+                        [
+                            'label' => 'Zentriert unten',
+                            'value' => 'as-center-bottom',
+                        ],
+                        [
+                            'label' => 'Links unten',
+                            'value' => 'as-left-bottom',
+                        ],
+                        [
+                            'label' => 'Links mitte',
+                            'value' => 'as-left-center',
+                        ],
+                        [
+                            'label' => 'Links oben',
+                            'value' => 'as-left-top',
+                        ],
+                        [
+                            'label' => 'Rechts unten',
+                            'value' => 'as-right-bottom',
+                        ],
+                        [
+                            'label' => 'Rechts mitte',
+                            'value' => 'as-right-center',
+                        ],
+                        [
+                            'label' => 'Rechts oben',
+                            'value' => 'as-right-top',
+                        ],
+                    ],
+                ]
+            ],
+            'image' => [
+                'label' => 'Bild',
+                'config' => [
+                    'maxitems' => 15,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
                                     --palette--;Optionen;imageSlidePalette,
                                     crop,
                                     --palette--;;filePalette'
+                            ],
                         ],
-                    ],
-                    'columns' => [
+                        'columns' => [
 
-                        'crop' => [
-                            'config' => [
-                                'cropVariants' => [
-                                    'specialMobile' => [
-                                        'disabled' => true,
-                                    ],
+                            'crop' => [
+                                'config' => [
+                                    'cropVariants' => [
+                                        'specialMobile' => [
+                                            'disabled' => true,
+                                        ],
 
-                                    'default' => [
-                                        'title' => 'Desktop',
-                                        'allowedAspectRatios' => [
-                                            '' => [
-                                                'title' => 'Wide-Panorama',
-                                                'value' => 4 / 1
+                                        'default' => [
+                                            'title' => 'Desktop',
+                                            'allowedAspectRatios' => [
+                                                '' => [
+                                                    'title' => 'Wide-Panorama',
+                                                    'value' => 4 / 1
+                                                ],
+                                                '3:1' => [
+                                                    'title' => '3 zu 1',
+                                                    'value' => 3.2 / 1
+                                                ],
+                                                '2:1' => [
+                                                    'title' => '2 zu 1',
+                                                    'value' => 2 / 1
+                                                ],
+                                                'default' => [
+                                                    'title' => 'Frei',
+                                                    'value' => 0
+                                                ]
                                             ],
-                                            '3:1' => [
-                                                'title' => '3 zu 1',
-                                                'value' => 3.2 / 1
-                                            ],
-                                            '2:1' => [
-                                                'title' => '2 zu 1',
-                                                'value' => 2 / 1
-                                            ],
-                                            'default' => [
-                                                'title' => 'Frei',
-                                                'value' => 0
-                                            ]
                                         ],
-                                    ],
-                                    'tablet' => [
-                                        'title' => 'Tablet',
-                                        'allowedAspectRatios' => [
-                                            '3:1' => [
-                                                'title' => 'Panorama',
-                                                'value' => 2.8 / 1
+                                        'tablet' => [
+                                            'title' => 'Tablet',
+                                            'allowedAspectRatios' => [
+                                                '3:1' => [
+                                                    'title' => 'Panorama',
+                                                    'value' => 2.8 / 1
+                                                ],
+                                                '2:1' => [
+                                                    'title' => '3 zu 2',
+                                                    'value' => 3 / 2
+                                                ],
+                                                'default' => [
+                                                    'title' => 'Frei',
+                                                    'value' => 0
+                                                ]
                                             ],
-                                            '2:1' => [
-                                                'title' => '3 zu 2',
-                                                'value' => 3 / 2
-                                            ],
-                                            'default' => [
-                                                'title' => 'Frei',
-                                                'value' => 0
-                                            ]
                                         ],
-                                    ],
-                                    'mobile' => [
-                                        'title' => 'Mobile Geräte',
-                                        'allowedAspectRatios' => [
-                                            '2:1' => [
-                                                'title' => 'Mobile',
-                                                'value' => 2 / 1
+                                        'mobile' => [
+                                            'title' => 'Mobile Geräte',
+                                            'allowedAspectRatios' => [
+                                                '2:1' => [
+                                                    'title' => 'Mobile',
+                                                    'value' => 2 / 1
+                                                ],
+                                                '1:1' => [
+                                                    'title' => 'Quadratisch',
+                                                    'value' => 0
+                                                ],
+                                                'default' => [
+                                                    'title' => 'Frei',
+                                                    'value' => 0
+                                                ]
                                             ],
-                                            '1:1' => [
-                                                'title' => 'Quadratisch',
-                                                'value' => 0
-                                            ],
-                                            'default' => [
-                                                'title' => 'Frei',
-                                                'value' => 0
-                                            ]
                                         ],
                                     ],
                                 ],
                             ],
-                        ],
+                        ]
                     ]
                 ]
             ]
         ]
-    ]
-];
+    ]);
+
+
 
 
 
