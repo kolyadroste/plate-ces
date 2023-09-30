@@ -22,7 +22,7 @@
         <f:variable name="vars" value=""/>
         <f:if condition="{iconColor}"><f:variable name="vars" value="{vars} --bs-icon-color:var({iconColor}) !important;"/></f:if>
         <f:if condition="{slides}">
-            <atomic-slider class="{classHeight}" style="{vars}" withnavbuttons="true" {f:if(condition:'{slides->f:count()} > 1', then:'nav-dots-top')} time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+            <atomic-slider class="{classHeight}" style="{vars}" withnavbuttons="true" time="{blendtime}" {f:if(condition:'{slides->f:count()} > 1', then:'nav-dots-top')} >
 
                 <f:if condition="{slides->f:count()} > 1">
                     <f:asset.script identifier="atomic-slider-dotnav-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-dotnav-button.min.js" priority="1"/>
@@ -81,6 +81,7 @@
                         image:'{slide}',
                         alt: slide.alternative,
                         title: slide.title,
+                        globalBlendTime: '{blendtime}',
                         imgLazy: '{imgLazy}',
                         imgConfig:imgConfig,
                         imageBlur:'{slide.properties.tx_plate_ces_blur}',

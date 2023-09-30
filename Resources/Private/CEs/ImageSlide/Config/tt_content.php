@@ -64,11 +64,11 @@ $GLOBALS['TCA']['tt_content']['types'][$plugin] = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['Standard', ''],
+                    ['Standard2', ''],
                     ['Zentriert', 'as-center-center'],
                     ['Zentriert oben', 'as-center-top'],
                     ['Zentriert unten', 'as-center-bottom'],
-                    ['Links unten', 'as-left.bottom'],
+                    ['Links unten', 'as-left-bottom'],
                     ['Links mitte', 'as-left-center'],
                     ['Links oben', 'as-left-top'],
                     ['Rechts unten', 'as-right-bottom'],

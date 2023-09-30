@@ -7,6 +7,7 @@ defined('TYPO3') or die('Access denied.');
 
 $plugin_showfields = '--palette--;;general, --palette--;;headers,
     --div--;Slides,layout,image,
+    --div--;Einstellungen,pi_flexform,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.appearanceLinks;appearanceLinks,

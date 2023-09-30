@@ -21,9 +21,9 @@ tt_content.tx_plate_ces_slider {
             contentFrame.data = flexform: pi_flexform:settings.contentframe
             contentFrame.ifEmpty = container
 
-            time = TEXT
-            time.data = flexform: pi_flexform:settings.time
-            time.ifEmpty = 3s
+            blendtime = TEXT
+            blendtime.data = flexform: pi_flexform:settings.blendtime
+            blendtime.ifEmpty = 10s
 
             buttonLabel = TEXT
             buttonLabel.data = flexform: pi_flexform:settings.buttonLabel

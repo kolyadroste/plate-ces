@@ -49,14 +49,14 @@
                             </config>
                         </TCEforms>
                     </settings.sliderHeight>
-                    <settings.time>
+                    <settings.blendtime>
                         <TCEforms>
                             <label>Überblendungzeit (Beispiel: '3s', '3000ms')</label>
                             <config>
                                 <type>input</type>>
                             </config>
                         </TCEforms>
-                    </settings.time>
+                    </settings.blendtime>
                     <settings.titleLayout>
                         <TCEforms>
                             <label>Typ Überschrift</label>
@@ -112,7 +112,7 @@
                     </settings.buttonLabel>
                     <settings.contentframe>
                         <TCEforms>
-                            <label>Rahmen Inhaltsbereich</label>
+                            <label>Rahmenbegrenzung Textbereich</label>
                             <config>
                                 <type>select</type>>
                                 <renderType>selectSingle</renderType>
