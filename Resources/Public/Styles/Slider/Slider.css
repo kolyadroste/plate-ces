@@ -5,3 +5,15 @@ atomic-slider.fullHeight{
     --atomic-overlay-min-height-large: 100vh;
     --atomic-overlay-min-height-xlarge: 100vh;
 }
+
+/* prevent layout shifting*/
+atomic-slider:not(:defined),
+atomic-slider.fullHeight:not(:defined){
+    height: 70vh;
+}
+@media (min-width: 1200px) {
+    atomic-slider:not(:defined),
+    atomic-slider.fullHeight:not(:defined){
+        height: 100vh;
+    }
+}
