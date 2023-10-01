@@ -22,7 +22,7 @@
         <f:variable name="vars" value=""/>
         <f:if condition="{iconColor}"><f:variable name="vars" value="{vars} --bs-icon-color:var({iconColor}) !important;"/></f:if>
         <f:if condition="{slides}">
-            <atomic-slider class="{classHeight}" style="{vars}" withnavbuttons="true" time="{blendtime}" {f:if(condition:'{slides->f:count()} > 1', then:'nav-dots-top')} >
+            <atomic-slider class="{classHeight}" style="{vars}" {f:if(condition:disableNavDots,then:'disableNavDots')} time="{blendtime}" {f:if(condition:'{positionNavDots} == \'navDotsTop\'', then:'nav-dots-top')} >
 
                 <f:if condition="{slides->f:count()} > 1">
                     <f:asset.script identifier="atomic-slider-dotnav-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-dotnav-button.min.js" priority="1"/>

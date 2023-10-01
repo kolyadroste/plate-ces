@@ -17,6 +17,14 @@ tt_content.tx_plate_ces_slider {
             imageFilter.data = flexform: pi_flexform:settings.imageFilter
             imageFilter.ifEmpty =
 
+            disableNavDots = TEXT
+            disableNavDots.data = flexform: pi_flexform:settings.disableNavDots
+            disableNavDots.ifEmpty =
+
+            positionNavDots = TEXT
+            positionNavDots.data = flexform: pi_flexform:settings.positionNavDots
+            positionNavDots.ifEmpty =
+
             contentFrame = TEXT
             contentFrame.data = flexform: pi_flexform:settings.contentframe
             contentFrame.ifEmpty = container

@@ -30,6 +30,33 @@
                             </config>
                         </TCEforms>
                     </settings.imageFilter>
+                    <settings.disableNavDots>
+                        <TCEforms>
+                            <label>Punktnavigation deaktivieren</label>
+                            <config>
+                                <type>check</type>>
+                            </config>
+                        </TCEforms>
+                    </settings.disableNavDots>
+                    <settings.positionNavDots>
+                        <TCEforms>
+                            <label>Position Punktnavigation</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">oben</numIndex>
+                                        <numIndex index="1">navDotsTop</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.positionNavDots>
                     <settings.sliderHeight>
                         <TCEforms>
                             <label>Höhe</label>
