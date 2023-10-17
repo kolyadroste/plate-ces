@@ -5,7 +5,6 @@
     <f:layout name="Default"/>
 
     <f:section name="Main">
-        <f:asset.css identifier="plateCesImageSlideStyle" href="{assetPath}/Styles/ImageSlide/ImageSlide.css"/>
         <f:variable name="slideLayout" value="{data.layout}"/>
         <f:if condition="{images.0.properties.layout}"><f:variable name="slideLayout" value="{images.0.layout}"/></f:if>
         <f:switch expression="{slideHeight}">
