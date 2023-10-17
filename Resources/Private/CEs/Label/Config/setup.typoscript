@@ -7,5 +7,14 @@ tt_content.tx_plate_ces_label {
         templateRootPaths {
             0 = EXT:plate_ces/Resources/Private/CEs/Label/
         }
+        variables {
+            headerPosition = TEXT
+            headerPosition.field = header_position
+            headerPosition.ifEmpty = start
+
+            labelLayout = TEXT
+            labelLayout.field = tx_plate_ce_layout
+            labelLayout.ifEmpty = default
+        }
     }
 }

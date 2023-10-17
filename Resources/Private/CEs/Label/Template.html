@@ -7,15 +7,26 @@
     <f:section name="Header"></f:section>
 
     <f:section name="Main">
-        <f:if condition="{data.header}">
-            <span><f:format.raw>{data.header}</f:format.raw></span>
-        </f:if>
-        <f:if condition="{data.date}">
-            <f:render partial="Atoms/Date" arguments="{data:{date:data.date}}"/>
-        </f:if>
-        <f:if condition="{data.bodytext}">
-            <f:format.html>{data.bodytext}</f:format.html>
-        </f:if>
+        <div class="layout-{labelLayout} text-{headerPosition}">
+            <f:if condition="{data.header}">
+                <span class="label-sub"><f:format.raw>{data.header}</f:format.raw></span>
+            </f:if>
+            <f:if condition="{data.subheader}">
+                <br>
+                <span class="label-sub"><f:format.raw>{data.subheader}</f:format.raw></span>
+            </f:if>
+            <f:if condition="{data.date}">
+                <f:switch expression="{data.header_position}">
+                    <f:case value="end"><f:variable name="addClass" value="justify-content-end"/></f:case>
+                    <f:case value="center"><f:variable name="addClass" value="justify-content-center"/></f:case>
+                    <f:defaultCase></f:defaultCase>
+                </f:switch>
+                <f:render partial="Atoms/Date" arguments="{data:{date:data.date,additionalClasses:addClass}}"/>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                <f:format.html>{data.bodytext}</f:format.html>
+            </f:if>
+        </div>
     </f:section>
 
 
