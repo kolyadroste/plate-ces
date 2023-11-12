@@ -8,6 +8,7 @@
 		"php": "^7.4 || ^8.0",
 		"typo3/cms-core": "^11.0 || ^12.0",
 		"atomicplan/plate-atomic-assets": "^0.5",
+		"atomicplan/plate-partials": "^0.5",
 		"blueways/bw-icons": "^2.0"
 	},
 	"extra": {
