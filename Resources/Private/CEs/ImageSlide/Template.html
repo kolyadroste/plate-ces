@@ -86,7 +86,7 @@
             }"/>
             <f:render partial="Atoms/RichText" arguments="{data:dataRichtext,settings:settings}"/>
             <f:if condition="{images.0.properties.link}">
-                <f:asset.script identifier="atomic-button" type="module" src="{data.atomicAssets}/Webcomponents/atomic-button.js" priority="1"/>
+                <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-button.min.js" priority="1"/>
                 <atomic-button wide style="margin-top:20px;">
                     {f:if(condition: '{buttonLabel}', then:'{buttonLabel}',else:'Mehr erfahren')}
                 </atomic-button>

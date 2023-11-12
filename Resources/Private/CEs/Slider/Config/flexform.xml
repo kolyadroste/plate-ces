@@ -72,6 +72,14 @@
                                         <numIndex index="0">Volle Höhe</numIndex>
                                         <numIndex index="1">full</numIndex>
                                     </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">75%</numIndex>
+                                        <numIndex index="1">h75</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">85%</numIndex>
+                                        <numIndex index="1">h85</numIndex>
+                                    </numIndex>
                                 </items>
                             </config>
                         </TCEforms>

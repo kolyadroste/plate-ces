@@ -35,9 +35,22 @@ $plugin_showfields = '--palette--;;general,--palette--;;headers,
     --div--;Text, tx_plate_ces_input1, bodytext,
     --div--;Einstellungen,tx_plate_ces_check1,tx_plate_ces_check2, pi_flexform,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames';
+    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+    --palette--;;language,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+        --palette--;;hidden,
+        --palette--;;access,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+        categories,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+        rowDescription,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended';
 
 
+if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('plate_layoutces')) {
+	$plugin_showfields .= ',--div--;Navigation, tx_pl_lces_contentlinks_add_to_nav,pl_lces_nav_title';
+}
 
 $newSysFileReferenceColumns = [
 ];
@@ -46,7 +59,6 @@ $newSysFileReferenceColumns = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference',
     'imageSlidePalette', 'alternative, title');
 
-// Configure the default backend fields for the content element
 // Configure the default backend fields for the content element
 $GLOBALS['TCA']['tt_content']['types'][$plugin] = array_replace_recursive(
     $GLOBALS['TCA']['tt_content']['types'][$plugin],

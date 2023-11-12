@@ -10,15 +10,22 @@
     width:100%;
     gap: var(--pces-cilr-gap-mobile, 20px);
 }
-.pces-cilr.-centered{
-    align-items: center;
+@media screen and (min-width: 576px) {
+    .pces-cilr.-centered-left .container{
+        padding-left: var(--pces-cilr-inner-gap-mobile, 60px);
+    }
+    .pces-cilr.-centered-right .container{
+        padding-right: var(--pces-cilr-inner-gap-mobile, 60px);
+    }
 }
+
 .pces-cil-text{
     flex-grow:1;
 }
 .pces-cilr-item.pces-cilr-text{
     grid-area:text;
     width: 100%;
+    display: flex;
 }
 .pces-cilr-text-inner{
     width: calc(var(--bs-textimage-textinner-width)/2 - var(--bs-gap-default, 20px));
@@ -66,36 +73,50 @@
 
 @media (min-width: 768px) {
     .pces-cilr{
-        gap: var(--pces-cilr-gap-tablet, 40px);
+        gap: var(--pces-cilr-gap-tablet, 20px);
     }
 }
 @media (min-width: 992px) {
     .pces-cilr{
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: var(--pces-cilr-gap-desktop, 60px);
+        gap: var(--pces-cilr-gap-desktop, 0px);
     }
     .pces-cilr-text-inner{
         margin: 0 !important;
-        width: calc(var(--frame-width-lg)/2 - var(--pces-cilr-gap-desktop, 20px));
+        width: calc(var(--frame-width-lg)/2 - var(--pces-cilr-gap-desktop, 0px));
         padding-bottom: var(--pces-cilr-text-padding-bottom, 50px);
         padding-top: var(--pces-cilr-text-padding-top, 50px);
     }
 }
 @media (min-width: 1200px) {
     .pces-cilr{
-        gap: var(--pces-cilr-gap-desktop, 60px);
+        gap: var(--pces-cilr-gap-desktop, 0px);
         flex-direction: row;
     }
     .pces-cilr-text-inner{
-        width: calc(var(--frame-width-xl)/2 - var(--pces-cilr-gap-desktop, 20px));
+        width: calc(var(--frame-width-xl)/2 - var(--pces-cilr-gap-desktop, 0px));
     }
 }
 @media (min-width: 1400px) {
     .pces-cilr{
-        gap: var(--pces-cilr-gap-desktop, 60px);
         flex-direction: row;
     }
     .pces-cilr-text-inner{
-        width: calc(var(--frame-width-xxl)/2 - var(--pces-cilr-gap-desktop, 20px));
+        width: calc(var(--frame-width-xxl)/2 - var(--pces-cilr-gap-desktop, 0px));
+    }
+}
+
+/* layputs */
+.pces-cilr.layout-text-center .pces-cilr-item.pces-cilr-text{
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 1400px) {
+    .pces-cilr.h-imageControlsHeight .pces-cilr-item.pces-cilr-image picture,
+    .pces-cilr.h-imageControlsHeight .pces-cilr-item.pces-cilr-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative;
     }
 }

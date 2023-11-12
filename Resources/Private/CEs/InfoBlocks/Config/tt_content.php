@@ -48,6 +48,7 @@ $GLOBALS['TCA']['tt_content']['types'][$plugin] = [
                 'items' => [
                     ['Standard', ''],
                     ['Auf Weiß', 'white'],
+					['Flip Card', 'flipcards'],
                 ],
             ]
         ],

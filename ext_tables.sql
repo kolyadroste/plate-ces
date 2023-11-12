@@ -11,6 +11,8 @@ CREATE TABLE tt_content (
     inline_1 int(11) unsigned DEFAULT '0',
     tx_dpces_carousel_item int(11) unsigned DEFAULT '0',
     equal_height tinyint,
+    media2 int(11) unsigned DEFAULT '0',
+    media3 int(11) unsigned DEFAULT '0',
 );
 
 #

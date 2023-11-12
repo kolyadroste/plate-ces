@@ -16,6 +16,13 @@ tt_content.tx_plate_ces_cardimageleftright {
             textPadding.data = flexform:pi_flexform:settings.textPadding
             textPadding.ifEmpty = p-4
 
+            layout = TEXT
+            layout.field = layout
+            layout.ifEmpty = default
+
+            controlHeight = TEXT
+            controlHeight.data = flexform:pi_flexform:settings.controlHeight
+            controlHeight.ifEmpty = textControlsHeight
         }
         dataProcessing {
             10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor

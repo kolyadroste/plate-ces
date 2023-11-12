@@ -5,6 +5,18 @@ atomic-slider.fullHeight{
     --atomic-overlay-min-height-large: 100vh;
     --atomic-overlay-min-height-xlarge: 100vh;
 }
+atomic-slider.h75{
+    --atomic-overlay-min-height-small: 70vh;
+    --atomic-overlay-min-height-medium: 70vh;
+    --atomic-overlay-min-height-large: 75vh;
+    --atomic-overlay-min-height-xlarge: 75vh;
+}
+atomic-slider.h85{
+    --atomic-overlay-min-height-small: 70vh;
+    --atomic-overlay-min-height-medium: 70vh;
+    --atomic-overlay-min-height-large: 85vh;
+    --atomic-overlay-min-height-xlarge: 85vh;
+}
 
 /* prevent layout shifting*/
 atomic-overlay:not(:defined){

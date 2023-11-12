@@ -1,13 +1,13 @@
 <?php
 
+defined('TYPO3') || die('Access denied.');
+
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use AtomicPlan\PlateCes\Utility\TcaHelpers;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
-
-defined('TYPO3') or die();
 
 (function ($defaultExtension = 'plate_ces', $cePath = 'Resources/Private/CEs/', $configPath = '/Config/') {
 
@@ -45,13 +45,7 @@ defined('TYPO3') or die();
 
         try {
             include_once($currPath . $configPath . 'tt_content.php');
-            if($plugin == 'tx_plate_ces_pageteaser') {
-            //debug($currPath . $configPath . 'tt_content.php');die;
-//            debug($overrideExtIsSet, "overrideExtIsSet");
-//            debug($customPath,"customPath");
-//            debug($currPath);die;
 
-            }
             $config = json_decode(file_get_contents($currPath . $configPath . 'config.json'), true);
         } catch (\Exception $e) {
             throw new \Exception('Plate Ces - Error while including files for: ' . $currPath . $configPath . ' ############' . $e, 1623159831);
