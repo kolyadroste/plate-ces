@@ -58,7 +58,7 @@
                                 }"
                 />
                 <f:if condition="{infoBlock.data.countupval}">
-                    <f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
+                    <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
                     <h3>
                         <f:comment>{infoBlock.data.countupprecision}</f:comment>
                         <atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
@@ -71,9 +71,9 @@
 
     <f:section name="flipcard">
         <f:asset.css identifier="plce.ib-flip-card" href="{assetPath}Styles/InfoBlocks/IbFlipCard.css" />
-        <div class="ac-card p-4 mb-4 d-flex justify-content-center">
+        <div class="ac-card mb-4 d-flex justify-content-center">
             <div class="text-inner-wrap vars-reduced-p-margin mb-0:last-child ">
-                <div class="ib-flip-card-front">
+                <div class="ib-flip-card-front p-4">
                     <f:variable name="iconData" value="{
                                         icon: '{infoBlock.data.tx_plate_ces_icon}',
                                         width: '50',
@@ -95,13 +95,32 @@
                     <f:if condition="{infoBlock.data.countupval}">
                         <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
                         <h3>
-                            <atomic-countup xxxx value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
+                            <atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
                         </h3>
                     </f:if>
                     <f:format.html>{infoBlock.data.description}</f:format.html>
                 </div>
-                <div class="ib-flip-card-back">
-                    asdsad adsada dasdas dadad s ds
+                <div class="ib-flip-card-back p-4 -colorized">
+                    <f:variable name="iconData" value="{
+                        icon: '{infoBlock.data.tx_plate_ces_icon}',
+                        width: '50',
+                        height: '50',
+                        additionalClasses: 'justify-content-center'
+                    }" />
+                    <f:render
+                            partial="Atoms/Icon"
+                            arguments="{data: iconData}"
+                    />
+                    <f:render
+                            partial="Header/Header"
+                            arguments="{
+                                        header: '{infoBlock.data.header}',
+                                        layout: '3',
+                                        default: '{settings.defaultHeaderType}',
+                                        additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
+                                    }"
+                    />
+                    <f:format.html>{infoBlock.data.description2}</f:format.html>
                 </div>
             </div>
         </div>

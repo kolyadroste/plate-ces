@@ -40,3 +40,11 @@
     color: white;
     transform: rotateY(180deg);
 }
+.ib-flip-card-front .btn,
+.ib-flip-card-back .btn{
+    margin-top: 0px;
+    --bs-btn-padding-x:var(--bs-gap-medium, 20px);
+}
+.ib-flip-card-back{
+    --bs-icon-color: var(--bs-white, #fff) !important;
+}
