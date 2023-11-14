@@ -1,5 +1,0 @@
-Order deny,allow
-Deny from all
-<Files "icon.svg">
-    Allow from all
-</Files>

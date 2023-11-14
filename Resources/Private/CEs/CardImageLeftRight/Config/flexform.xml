@@ -18,9 +18,9 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <settings.textPadding>
+                    <settings.controlHeight>
                         <TCEforms>
-                            <label>Text Abstand zum Rand</label>
+                            <label>Definition Höhe (nur desktop ab 1400 px)</label>
                             <config>
                                 <type>select</type>>
                                 <renderType>selectSingle</renderType>
@@ -30,29 +30,17 @@
                                         <numIndex index="1"></numIndex>
                                     </numIndex>
                                     <numIndex index="1">
-                                        <numIndex index="0">klein</numIndex>
-                                        <numIndex index="1">p-1</numIndex>
+                                        <numIndex index="0">Bild kontrolliert Höhe</numIndex>
+                                        <numIndex index="1">imageControlsHeight</numIndex>
                                     </numIndex>
                                     <numIndex index="2">
-                                        <numIndex index="0">Normal</numIndex>
-                                        <numIndex index="1">p-2</numIndex>
-                                    </numIndex>
-                                    <numIndex index="3">
-                                        <numIndex index="0">Mehr</numIndex>
-                                        <numIndex index="1">p-3</numIndex>
-                                    </numIndex>
-                                    <numIndex index="4">
-                                        <numIndex index="0">Groß</numIndex>
-                                        <numIndex index="1">p-4</numIndex>
-                                    </numIndex>
-                                    <numIndex index="5">
-                                        <numIndex index="0">Größer</numIndex>
-                                        <numIndex index="1">p-5</numIndex>
+                                        <numIndex index="0">Text kontrolliert Höhe</numIndex>
+                                        <numIndex index="1">textControlsHeight</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
                         </TCEforms>
-                    </settings.textPadding>
+                    </settings.controlHeight>
 
                 </el>
             </ROOT>
