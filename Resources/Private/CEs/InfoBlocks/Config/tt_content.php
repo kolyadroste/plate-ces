@@ -46,9 +46,18 @@ $GLOBALS['TCA']['tt_content']['types'][$plugin] = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['Standard', ''],
-                    ['Auf Weiß', 'white'],
-					['Flip Card', 'flipcards'],
+					[
+						'label' => 'Standard',
+						'value' => '',
+					],
+					[
+						'label' => 'Auf Weiß',
+						'value' => 'white',
+					],
+					[
+						'label' => 'Flip Cards',
+						'value' => 'flipcards',
+					]
                 ],
             ]
         ],
