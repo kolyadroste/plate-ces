@@ -46,7 +46,16 @@ return [
 			'config' => [
 				'type' => 'text',
 				"enableRichtext" => true,
-				"richtextConfiguration" => "default",
+				"richtextConfiguration" => "bootstrap",
+			],
+		],
+		'description2' => [
+			'label' => 'FlipCard Rückseite',
+			'description' => 'Dieser Bereich ist nur notwendig, wenn Sie als Layout FlipCard Ansicht verwenden.',
+			'config' => [
+				'type' => 'text',
+				"enableRichtext" => true,
+				"richtextConfiguration" => "bootstrap",
 			],
 		],
 
@@ -179,6 +188,7 @@ return [
 		'0' => [
 			'showitem' => '--palette--;;general,description,--palette--;;media,
                 --div--;Extra,countupval,countupunit,countupprecision,
+                --div--;FlipCard,description2,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,

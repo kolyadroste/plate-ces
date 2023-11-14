@@ -38,6 +38,7 @@ CREATE TABLE tx_plate_ces_infoblocks (
      header tinytext,
      layout tinytext,
      description text,
+     description2 text,
      typolink varchar(4096),
      tx_plate_ces_icon varchar(4096),
      linkstyle tinyint(4) unsigned DEFAULT '0' NOT NULL,
