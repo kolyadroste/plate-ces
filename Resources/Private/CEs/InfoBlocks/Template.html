@@ -58,7 +58,7 @@
                                 }"
                 />
                 <f:if condition="{infoBlock.data.countupval}">
-                    <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
+                    <f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
                     <h3>
                         <f:comment>{infoBlock.data.countupprecision}</f:comment>
                         <atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
@@ -93,7 +93,7 @@
                                     }"
                     />
                     <f:if condition="{infoBlock.data.countupval}">
-                        <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
+                        <f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
                         <h3>
                             <atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
                         </h3>
