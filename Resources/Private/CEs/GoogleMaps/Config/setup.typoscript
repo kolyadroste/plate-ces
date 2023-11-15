@@ -12,13 +12,14 @@ tt_content.tx_plate_ces_googlemaps {
             textBackground.data = flexform:pi_flexform:settings.text-background
             textBackground.ifEmpty = default
             mapHeight = TEXT
-            mapHeight.data = flexform:pi_flexform:settings.map-height
+            mapHeight.data = flexform:pi_flexform:settings.mapHeight
+            mapHeight.ifEmpty = 450
         }
         dataProcessing {
             20 = TYPO3\CMS\Frontend\DataProcessing\FlexFormProcessor
             20{
-                fieldName = pi_flexform_2
-                as = flexform2
+                fieldName = pi_flexform
+                as = flexform
             }
         }
     }

@@ -111,6 +111,10 @@ $GLOBALS['TCA']['tt_content']['types'][$plugin] = [
                                                 'title' => 'Quadratisch',
                                                 'value' => 1 / 1
                                             ],
+                                            '1.1:1' => [
+                                                'title' => 'Breiter',
+                                                'value' => 1.1 / 1
+                                            ],
                                             'free' => [
                                                 'title' => 'Frei',
                                                 'value' => 0

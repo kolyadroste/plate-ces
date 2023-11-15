@@ -19,14 +19,14 @@
                             </config>
                         </TCEforms>
                     </settings.map-iframe>
-                    <settings.map-height>
+                    <settings.mapHeight>
                         <TCEforms>
                             <label>Höhe Karte</label>
                             <config>
                                 <type>input</type>>
                             </config>
                         </TCEforms>
-                    </settings.map-height>
+                    </settings.mapHeight>
                 </el>
             </ROOT>
         </sDEF>

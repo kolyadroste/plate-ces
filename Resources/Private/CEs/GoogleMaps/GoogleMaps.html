@@ -21,7 +21,7 @@
 
         <f:if condition="{flexform.settings.active}">
             <div class="{flexform.settings.align} ">
-                <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-button.minjs"/>
+                <f:asset.script identifier="atomic-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-button.min.js"/>
                 <atomic-button {flexform.settings.layout} class="a-margin-top"
                               style="{f:if(condition:flexform.settings.minwidth,then:'min-width:{flexform.settings.minwidth}px; text-align:center;')}">
                     <f:link.typolink parameter="{flexform.settings.link}"

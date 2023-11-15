@@ -11,11 +11,13 @@
         width:100%;
     }
     .frame-type-tx_plate_ces_sliderpng .textpic-item.textpic-gallery{
-        border-bottom: solid 11px #2ca6d5;
         margin-bottom: var(--bs-gap-xlarge, 50px);
         order: 1;
     }
     .frame-type-tx_plate_ces_sliderpng .textpic-item.textpic-text{
         margin-bottom: var(--bs-gap-xlarge, 50px);
+    }
+    .frame-type-tx_plate_ces_sliderpng .frame-header > *{
+        --bs-h2-font-size: inherit !important;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 $defineWizard = function(string $extension,string $name, string $wizardCategory,string $icon, string $extCePath = 'EXT:plate_ces/Resources/Private/CEs/') {
     $lowercaseFoldername = strtolower($name);
-    $plugin = 'tx_'.$extension.'_' .$lowercaseFoldername;
+    $plugin = 'tx_plate_ces'.'_' .$lowercaseFoldername;
     $plugin_locallang_file='ll_'.$lowercaseFoldername.'.xlf';
     $plugin_incon_ident = $plugin .'icon';
     $plugin_icon_file=$icon;
