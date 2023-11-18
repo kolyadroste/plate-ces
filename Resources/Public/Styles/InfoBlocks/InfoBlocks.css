@@ -1,7 +1,7 @@
 
 .frame-type-tx_plate_ces_infoblocks{
-    --ac-card-bg: var(--plces-ib-cardbg, #fff);
+    --ac-card-bg: var(--plces-ib-cardbg, transparent);
 }
 .frame-type-tx_plate_ces_infoblocks.frame-layout-white{
-    --bs-heading-color: var(--bs-primary, #fff);
+    --bs-heading-color: var(--bs-primary, darkblue);
 }
