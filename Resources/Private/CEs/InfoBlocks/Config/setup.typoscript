@@ -21,6 +21,9 @@ tt_content.tx_plate_ces_infoblocks {
             gridGap = TEXT
             gridGap.data = flexform:pi_flexform:settings.grid-gap
             gridGap.ifEmpty = gap-default
+            responsiveCols = TEXT
+            responsiveCols.data = flexform:pi_flexform:settings.responsiveCols
+            responsiveCols.ifEmpty = none
         }
         dataProcessing {
             10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor

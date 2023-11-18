@@ -11,6 +11,29 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
+                    <settings.responsiveCols>
+                        <TCEforms>
+                            <label>Slider Responsiv</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Deaktiviert</numIndex>
+                                        <numIndex index="1">none</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Spalten - Mobile:1,Tablet:2</numIndex>
+                                        <numIndex index="1">m1-t2</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.responsiveCols>
                     <settings.title-align>
                         <TCEforms>
                             <label>Ausrichtung Titel</label>

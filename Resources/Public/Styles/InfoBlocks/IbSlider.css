@@ -1,0 +1,8 @@
+.frame-type-tx_plate_ces_infoblocks  atomic-slider{
+    --atomic-slider-background-color:transparent;
+    --atomic-slider-responsive-cols-gap: var(--plces-ib-cardgap, var(--bs-gap-medium, 20px));
+}
+.frame-type-tx_plate_ces_infoblocks  atomic-slider .ac-card{
+    margin-bottom: var(--plces-ib-slide-card-mb, var(--bs-gap-large, 60px)) !important;
+    text-align: var(--plces-ib-slide-card-textalign, center) !important;
+}
