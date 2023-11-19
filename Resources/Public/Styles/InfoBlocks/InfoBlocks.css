@@ -3,5 +3,5 @@
     --ac-card-bg: var(--plces-ib-cardbg, transparent);
 }
 .frame-type-tx_plate_ces_infoblocks.frame-layout-white{
-    --bs-heading-color: var(--bs-primary, darkblue);
+    --bs-heading-color: var(--bs-primary, #fff);
 }

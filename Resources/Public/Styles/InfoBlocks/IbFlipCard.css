@@ -22,6 +22,7 @@
 /* Position the front and back side */
 .ib-flip-card-front, .ib-flip-card-back {
     position: absolute;
+    border-radius: var(--plce-ib-fc-border-radius,0.25rem);
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
