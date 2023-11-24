@@ -32,7 +32,11 @@
 							<f:for each="{infoBlocks}" as="infoBlock">
 								<f:switch expression="{data.layout}">
 									<f:case value="flipcards"><f:render section="flipcard" arguments="{_all}"/></f:case>
-									<f:defaultCase><f:render section="defaultcard" arguments="{_all}"/></f:defaultCase>
+									<f:defaultCase>
+										<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
+											<f:format.html>{infoBlock.data.description2}</f:format.html>
+										</f:render>
+									</f:defaultCase>
 								</f:switch>
 							</f:for>
 						</div>
@@ -47,7 +51,11 @@
 							<f:for each="{infoBlocks}" as="infoBlock">
 								<f:switch expression="{data.layout}">
 									<f:case value="flipcards"><f:render section="flipcard" arguments="{_all}"/></f:case>
-									<f:defaultCase><f:render section="defaultcard" arguments="{_all}"/></f:defaultCase>
+									<f:defaultCase>
+										<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
+											<f:format.html>{infoBlock.data.description2}</f:format.html>
+										</f:render>
+									</f:defaultCase>
 								</f:switch>
 							</f:for>
 						</div>
@@ -67,7 +75,7 @@
 			<f:defaultCase><f:variable name="slideColumns" value="0:1,500:2"></f:variable></f:defaultCase>
 		</f:switch>
 		<atomic-slider-responsive-cols cols="{slideColumns}">
-			<atomic-slider class="{classHeight}" time="1000000" style="{vars}" withnavbuttons="true" time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+			<atomic-slider class="{classHeight}" style="{vars}" time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
 				<f:for each="{infoBlocks}" as="infoBlock">
 					<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
 						<f:format.html>{infoBlock.data.description2}</f:format.html>
@@ -106,7 +114,6 @@
 						<atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
 					</h3>
 				</f:if>
-				<f:format.html>{infoBlock.data.description}</f:format.html>
 				{footerContent ->f:format.raw()}
 			</div>
 		</div>
@@ -156,11 +163,11 @@
 					<f:render
 							partial="Header/Header"
 							arguments="{
-                                        header: '{infoBlock.data.header}',
-                                        layout: '3',
-                                        default: '{settings.defaultHeaderType}',
-                                        additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
-                                    }"
+							header: '{infoBlock.data.header}',
+							layout: '3',
+							default: '{settings.defaultHeaderType}',
+							additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
+						}"
 					/>
 					<f:format.html>{infoBlock.data.description2}</f:format.html>
 				</div>
