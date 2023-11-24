@@ -10,7 +10,7 @@
 			<f:if condition="{gridLayout}=='grid'">
 				<f:then>
 					<f:asset.css identifier="ac.grid.nums" href="{atomicAssets}atomic-components/ac.grid.nums.min.css" />
-					<f:variable name="gridLayoutClass" value="ac-grid-n::cols-{gridColumns}"/>
+					<f:variable name="gridLayoutClass" value="ac-grid-n::cols-3 xl(ac-grid-n::cols-{gridColumns})"/>
 				</f:then>
 				<f:else>
 					<f:asset.css identifier="ah.cols" href="{atomicAssets}Styles/helpers/ah.cols.min.css" />
@@ -28,7 +28,7 @@
 					<f:asset.css identifier="bs.utilities.sm" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.sm.css"/>
 					<f:asset.css identifier="bs.utilities.md" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.md.css"/>
 					<div class="@container d-none d-lg-block d-xl-block">
-						<div class="{gridLayoutClass} {gridGap}">
+						<div class="{gridLayoutClass}  {gridGap}">
 							<f:for each="{infoBlocks}" as="infoBlock">
 								<f:switch expression="{data.layout}">
 									<f:case value="flipcards"><f:render section="flipcard" arguments="{_all}"/></f:case>
