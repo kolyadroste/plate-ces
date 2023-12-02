@@ -32,3 +32,7 @@ atomic-slider.fullHeight:not(:defined){
         height: 100vh;
     }
 }
+
+.frame-type-tx_plate_ces_slider atomic-overlay .ah-richtext *{
+    color: var(--plces-slider-overlay-txt-color, white);
+}
