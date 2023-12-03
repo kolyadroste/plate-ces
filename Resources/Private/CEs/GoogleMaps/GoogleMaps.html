@@ -8,7 +8,7 @@
         <f:asset.script identifier="atomic-cookie-consent" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-cookie-consent.min.js"/>
         <f:asset.css identifier="ww_mediaconsent-styles" href="EXT:plate_ces/Resources/Public/Styles/GoogleMaps/googleMaps.css"/>
 
-        <atomic-cookie-consent embed16by9 valuesHTMLencoded identifier="googlemaps" contentName="Google Maps" contentProtector="Google" linkPrivacyPolicy="https://policies.google.com/privacy">
+        <atomic-cookie-consent embed16by9 valuesHTMLencoded identifier="googlemaps" contentName="Google Maps" contentProtector="Google" linkPrivacyPolicy="https://policies.google.com/privacy" style="height:{mapHeight}px">
             <script type="text/x-gdpr-protected">
                 <iframe src="{flexform.settings.map-iframe}" width="100%" height="{mapHeight}px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </script>
