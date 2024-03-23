@@ -4,6 +4,12 @@
 	"description": "Plate Ces - Provide a set of contentelements",
 	"license": "GPL-2.0-or-later",
 	"keywords": ["TYPO3 CMS", "Integrators", "Site Extension", "Site Package", "TypoScript"],
+	"authors": [
+		{
+			"name": "Kolya von Droste zu Vischering",
+			"role": "Developer"
+		}
+	],
 	"require": {
 		"php": "^7.4 || ^8.0",
 		"typo3/cms-core": "^11.0 || ^12.0",
