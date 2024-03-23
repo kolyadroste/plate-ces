@@ -1,0 +1,177 @@
+<fluid
+		data-namespace-typo3-fluid="true"
+		xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+		xmlns:ac="http://typo3.org/ns/Atomicplan\PlateAtomicAssets\ViewHelpers"
+>
+	<f:layout name="Default"/>
+
+	<f:section name="Main">
+		<f:if condition="{infoBlocks}">
+			<f:if condition="{gridLayout}=='ac-grid'">
+				<f:then>
+					<f:asset.css identifier="ac.grid.nums" href="{atomicAssets}atomic-components/ac.grid.nums.min.css" />
+					<f:variable name="gridLayoutClass" value="ac-grid-n::cols-1 sm(ac-grid-n::cols-2) md(ac-grid-n::cols-3) xl(ac-grid-n::cols-{gridColumns})"/>
+				</f:then>
+				<f:else>
+					<f:asset.css identifier="ah.cols" href="{assetPath}Styles/Generic/ah.cols.css" />
+					<f:variable name="gridLayoutClass" value="ah-cols::{gridColumns}"/>
+				</f:else>
+			</f:if>
+
+			<f:asset.css identifier="ac.card" href="{atomicAssets}atomic-components/ac.card.css" />
+			<f:asset.css identifier="plce.info-blocks" href="{assetPath}Styles/InfoFlipcards/InfoBlocks.css" />
+
+			<f:if condition="{responsiveCols} != 'none' && {responsiveCols} != ''">
+				<f:then>
+					<f:asset.css identifier="bs.utilities.lg" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.lg.css"/>
+					<f:asset.css identifier="bs.utilities.xl" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.xl.css"/>
+					<f:asset.css identifier="bs.utilities.sm" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.sm.css"/>
+					<f:asset.css identifier="bs.utilities.md" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.md.css"/>
+					<div class="@container d-none d-lg-block d-xl-block layout-flipcards">
+						<f:asset.script identifier="atomic-equalize" type="module" src="EXT:plate_atomic_assets/Resources/Public/Webcomponents/Dist/atomic-equalize.min.js" />
+						<atomic-equalize selector="[ib-flip-card]" breakpoints="980::on">
+							<div class="{gridLayoutClass}  {gridGap}">
+								<f:render section="RenderList" arguments="{_all}"/>
+							</div>
+						</atomic-equalize>
+					</div>
+					<div class="d-lg-none">
+						<f:render section="ResponsiveSlider" arguments="{_all}"/>
+					</div>
+				</f:then>
+				<f:else>
+					<div class="@container layout-flipcards">
+						<f:asset.script identifier="atomic-equalize" type="module" src="EXT:plate_atomic_assets/Resources/Public/Webcomponents/Dist/atomic-equalize.min.js" />
+						<atomic-equalize selector="[ib-flip-card]" breakpoints="980::on">
+							<div class="{gridLayoutClass} {gridGap}">
+								<f:render section="RenderList" arguments="{_all}"/>
+							</div>
+						</atomic-equalize>
+					</div>
+				</f:else>
+			</f:if>
+		</f:if>
+	</f:section>
+
+	<f:section name="RenderList">
+		<f:for each="{infoBlocks}" as="infoBlock">
+			<f:render section="flipcard" arguments="{_all}"/>
+		</f:for>
+	</f:section>
+
+	<f:section name="ResponsiveSlider">
+		<f:asset.script identifier="atomic-slider" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider.min.js" priority="1"/>
+		<f:asset.script identifier="atomic-slider-responsive-cols" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-responsive-cols.min.js" priority="1"/>
+		<f:asset.script identifier="atomic-slider-dotnav-button" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider-dotnav-button.min.js" priority="1"/>
+		<f:asset.script identifier="atomic-equalize" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-equalize.min.js" priority="1"/>
+		<f:asset.css identifier="plces.Ib-Slider" href="{assetPath}Styles/InfoFlipcards/IbSlider.css"/>
+		<f:switch expression="{responsiveCols}">
+			<f:case value="m1-t2"><f:variable name="slideColumns" value="0:1,500:2"></f:variable></f:case>
+			<f:defaultCase><f:variable name="slideColumns" value="0:1,500:2"></f:variable></f:defaultCase>
+		</f:switch>
+		<atomic-equalize selector=".ac-card" class="grid" breakpoints="0::on,992::off">
+			<atomic-slider-responsive-cols cols="{slideColumns}">
+				<atomic-slider class="{classHeight}" style="{vars}" time="{f:if(condition: '{flexform} && {flexform.settings.time}', then:'{flexform.settings.time}',else:'8s')}">
+					<f:for each="{infoBlocks}" as="infoBlock">
+						<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
+							<f:format.html>{infoBlock.data.description2}</f:format.html>
+						</f:render>
+					</f:for>
+				</atomic-slider>
+			</atomic-slider-responsive-cols>
+		</atomic-equalize>
+	</f:section>
+
+	<f:section name="flipcard">
+		<f:asset.css identifier="plces.ib-flip-card" href="{assetPath}Styles/InfoFlipcards/IbFlipCard.css" />
+		<div class="ac-card flipcard d-flex justify-content-center asrc-slide">
+			<div class="text-inner-wrap vars-reduced-p-margin mb-0:last-child ">
+				<div ib-flip-card class="ib-flip-card-front">
+					<f:if condition="{infoBlock.data.tx_plate_ces_icon}">
+						<f:variable name="iconData" value="{
+							icon: '{infoBlock.data.tx_plate_ces_icon}',
+							width: '50',
+							height: '50'
+						}" />
+						<f:render
+								partial="Atoms/Icon"
+								arguments="{data: iconData}"
+						/>
+					</f:if>
+
+					<f:if condition="{infoBlock.image && infoBlock.image.0}">
+						<f:variable name="imgConfig" value="{
+							992:{w:500,cropVariant:'default'},
+							768:{w:800,cropVariant:'default'},
+							500:{w:500,cropVariant:'default'},
+							400:{w:400,cropVariant:'default'},
+							300:{w:300,cropVariant:'default'}
+						}"/>
+						<f:variable name="imageData" value="{
+							uid:'{infoBlock.properties.uid}',
+							image:infoBlock.image.0,
+							alt: infoBlock.properties.alternative,
+							title: infoBlock.properties.title,
+							config: imgConfig,
+							additionalClasses: 'w-100 h-auto'
+						}"/>
+						<f:render partial="Atoms/Image" arguments="{data: imageData}"/>
+					</f:if>
+					<div class="content p-4">
+						<f:render
+								partial="Header/Header"
+								arguments="{
+                                    header: '{infoBlock.data.header}',
+                                    layout: '3',
+                                    default: '{settings.defaultHeaderType}',
+                                    additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
+                                }"
+						/>
+						<f:if condition="{infoBlock.data.countupval}">
+							<f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
+							<h3>
+								<atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
+							</h3>
+						</f:if>
+						<f:format.html>{infoBlock.data.description}</f:format.html>
+					</div>
+				</div>
+				<div ib-flip-card class="ib-flip-card-back">
+					<f:if condition="{infoBlock.image && infoBlock.image.0}">
+						<f:variable name="imgConfig" value="{
+							992:{w:500,cropVariant:'default'},
+							768:{w:800,cropVariant:'default'},
+							500:{w:500,cropVariant:'default'},
+							400:{w:400,cropVariant:'default'},
+							300:{w:300,cropVariant:'default'}
+						}"/>
+						<f:variable name="imageData" value="{
+							uid:'{infoBlock.properties.uid}',
+							image:infoBlock.image.0,
+							alt: infoBlock.properties.alternative,
+							title: infoBlock.properties.title,
+							config: imgConfig,
+							additionalClasses: 'w-100 h-auto'
+						}"/>
+						<f:render partial="Atoms/Image" arguments="{data: imageData}"/>
+					</f:if>
+					<f:variable name="iconData" value="{
+                        icon: '{infoBlock.data.tx_plate_ces_icon}',
+                        width: '50',
+                        height: '50'
+                    }" />
+					<f:variable name="titleData" value="{
+						title: '{infoBlock.data.header}',
+						type: 'h3',
+						additionalClasses: 'plif-title text-align-{titleAlign}'
+                    }" />
+					<div class="content">
+						<f:render partial="Atoms/Icon" arguments="{data: iconData}"/>
+						<f:render partial="Atoms/Title" arguments="{data:titleData}"/>
+						<f:format.html>{infoBlock.data.description2}</f:format.html>
+					</div>
+				</div>
+			</div>
+		</div>
+	</f:section>
+</fluid>

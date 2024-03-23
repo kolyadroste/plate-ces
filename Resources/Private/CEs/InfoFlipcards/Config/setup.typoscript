@@ -1,0 +1,53 @@
+
+tt_content.tx_plate_ces_infoflipcards = COA
+tt_content.tx_plate_ces_infoflipcards {
+
+    10 =< lib.ceDefault
+    10{
+        templateName = Template.html
+        templateRootPaths {
+            0 = EXT:plate_ces/Resources/Private/CEs/InfoFlipcards/
+        }
+        variables {
+            titleAlign = TEXT
+            titleAlign.data = flexform:pi_flexform:settings.title-align
+            titleAlign.ifEmpty = center
+            gridLayout = TEXT
+            gridLayout.data = flexform:pi_flexform:settings.grid-layout
+            gridLayout.ifEmpty = ac-grid
+            gridColumns = TEXT
+            gridColumns.data = flexform:pi_flexform:settings.grid-columns
+            gridColumns.ifEmpty = 3
+            gridGap = TEXT
+            gridGap.data = flexform:pi_flexform:settings.grid-gap
+            gridGap.ifEmpty = gap-default
+            responsiveCols = TEXT
+            responsiveCols.data = flexform:pi_flexform:settings.responsiveCols
+            responsiveCols.ifEmpty = none
+
+        }
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+            10 {
+                if.isTrue.field = tx_plate_ces_infoblocks
+                table = tx_plate_ces_infoblocks
+                orderBy = sorting
+                pidInList.field = pid
+                as = infoBlocks
+                where = parentid = ###ceid###
+                markers{
+                    ceid.data = field:uid
+                }
+                // recursively process the images in the records with the FilesProcessor
+                dataProcessing {
+                    10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                    10 {
+                        references.fieldName = image
+                        as = image
+                    }
+                }
+            }
+
+        }
+    }
+}
