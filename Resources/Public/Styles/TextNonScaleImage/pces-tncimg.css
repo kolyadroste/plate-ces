@@ -7,6 +7,18 @@
 .pces-tncimg.-centered{
     align-items: center;
 }
+.pces-tncimg .pces-tncimg-image{
+    max-width: 30%;
+}
+.pces-tncimg .pces-tncimg-image img{
+    max-width: 100%;
+    height: auto;
+}
+@media (min-width: 992px) {
+    .pces-tncimg .pces-tncimg-image{
+        max-width: 50%;
+    }
+}
 pces-tncimg-text{
     flex-grow:1;
 }

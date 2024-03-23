@@ -24,6 +24,10 @@
     </f:section>
 
     <f:section name="default">
+        <f:variable name="cardClasses" value=""/>
+        <f:if condition="{background}">
+            <f:variable name="cardClasses" value="{cardClasses} {background}"/>
+        </f:if>
         <f:for each="{teaserPages}" as="teaser">
             <div class="grid-entry">
                 <f:switch expression="{layout}">
@@ -31,11 +35,10 @@
                         horizontal
                     </f:case>
                     <f:defaultCase>
-                        <f:variable name="backgroundClass" value="{f:if(condition: '{background}', then: 'bg {background}', else: '')}"/>
                         <f:variable name="cardData" value="{
                             uid: teaser.uid,
                             link:'{f:uri.page(pageUid: teaser.uid)}',
-                            additionalClasses: '{backgroundClass}'
+                            additionalClasses:'{cardClasses}'
                         }"/>
                         <f:render partial="Molecules/Cards/SimpleVertical/WrapperCard" arguments="{data:cardData}" contentAs="content">
                             <section class="card-media">
@@ -47,8 +50,9 @@
                                 <f:variable name="mediaData" value="{
 								type: 'image',
 								media: teaser.media.0,
-								addionalClasses: '',
-								imgConfig: imgConfig
+								additionalClasses: '',
+								imgConfig: imgConfig,
+								imageClasses: 'h-auto'
 							}"/>
                                 <f:render partial="Molecules/Media/Media" arguments="{data: mediaData}"/>
                             </section>

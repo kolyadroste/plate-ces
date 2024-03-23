@@ -2,7 +2,7 @@ lib.variables_1686989019 < lib.ceDefault.variables
 lib.variables_1686989019{
     background = TEXT
     background.data = flexform: pi_flexform:settings.background
-    background.ifEmpty = bg-none
+    background.ifEmpty = --bg-primary
 
     sorting = TEXT
     sorting.data = flexform: pi_flexform:settings.sorting

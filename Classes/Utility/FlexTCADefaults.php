@@ -30,7 +30,32 @@ class FlexTCADefaults
         ];
     }
 
-    public function bsHoverColorVars(array &$config)
+	public function bgColor(array &$config)
+	{
+		// simple and stupid example
+		// change this to dynamically populate the list!
+		$config['items'] = [
+			// label, value
+			['Standard', ''],
+			['Primary', 'bg-primary'],
+			['Secondary', 'bg-secondary'],
+			['Tertiary', 'bg-tertiary'],
+			['Quaternary', 'bg-quaternary'],
+			['Black', 'bg-black'],
+			['White', 'bg-white'],
+			['Success', 'bg-success'],
+			['Info', 'bg-info'],
+			['Warning', 'bg-warning'],
+			['Danger', 'bg-danger'],
+			['Light', 'bg-light'],
+			['Dark', 'bg-dark'],
+			['Transparent', 'bg-transparent']
+		];
+	}
+
+
+
+	public function bsHoverColorVars(array &$config)
     {
         // simple and stupid example
         // change this to dynamically populate the list!

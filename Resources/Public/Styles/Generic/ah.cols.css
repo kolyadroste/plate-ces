@@ -1,0 +1,61 @@
+/* columns */
+.ah-cols\:\:default{
+    column-count: 1;
+}
+.ah-cols\:\:2{
+    column-count: 1;
+}
+.ah-cols\:\:3{
+    column-count: 1;
+}
+.ah-cols\:\:4{
+    column-count: 1;
+}
+.ah-cols\:\:5{
+    column-count: 1;
+}
+.ah-cols\:\:default > *,
+.ah-cols\:\:2 > *,
+.ah-cols\:\:3 > *,
+.ah-cols\:\:4 > *{
+    break-inside: avoid;
+}
+@container (min-width: 767px) {
+    .ah-cols\:\:3{
+        column-count: 2;
+    }
+    .ah-cols\:\:4{
+        column-count: 2;
+    }
+    .ah-cols\:\:5{
+        column-count: 2;
+    }
+}
+
+@container (min-width: 992px) {
+    .ah-cols\:\:default{
+        column-count: var(--vars-columns-default,2);
+    }
+    .ah-cols\:\:2{
+        column-count: 2;
+    }
+    .ah-cols\:\:3{
+        column-count: 3;
+    }
+    .ah-cols\:\:4{
+        column-count: 3;
+    }
+    .ah-cols\:\:5{
+        column-count: 4;
+    }
+}
+@container (min-width: 1200px) {
+    .ah-cols\:\:4{
+        column-count: 4;
+    }
+}
+@container (min-width: 1400px) {
+    .ah-cols\:\:5{
+        column-count: 5;
+    }
+}

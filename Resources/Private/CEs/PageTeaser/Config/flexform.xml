@@ -80,56 +80,7 @@
                             <config>
                                 <type>select</type>
                                 <renderType>selectSingle</renderType>
-                                <items>
-                                    <numIndex index="0">
-                                        <numIndex index="0">Default</numIndex>
-                                        <numIndex index="1"></numIndex>
-                                    </numIndex>
-                                    <numIndex index="1">
-                                        <numIndex index="0">Primär</numIndex>
-                                        <numIndex index="1">bg-primary</numIndex>
-                                    </numIndex>
-                                    <numIndex index="2">
-                                        <numIndex index="0">Sekundär</numIndex>
-                                        <numIndex index="1">bg-secondary</numIndex>
-                                    </numIndex>
-                                    <numIndex index="3">
-                                        <numIndex index="0">Tertiär</numIndex>
-                                        <numIndex index="1">bg-tertiary</numIndex>
-                                    </numIndex>
-                                    <numIndex index="4">
-                                        <numIndex index="0">Quartär</numIndex>
-                                        <numIndex index="1">bg-quarternary</numIndex>
-                                    </numIndex>
-                                    <numIndex index="5">
-                                        <numIndex index="0">Info</numIndex>
-                                        <numIndex index="1">bg-info</numIndex>
-                                    </numIndex>
-                                    <numIndex index="6">
-                                        <numIndex index="0">Light</numIndex>
-                                        <numIndex index="1">bg-light</numIndex>
-                                    </numIndex>
-                                    <numIndex index="7">
-                                        <numIndex index="0">Dark</numIndex>
-                                        <numIndex index="1">bg-dark</numIndex>
-                                    </numIndex>
-                                    <numIndex index="8">
-                                        <numIndex index="0">Success</numIndex>
-                                        <numIndex index="1">bg-success</numIndex>
-                                    </numIndex>
-                                    <numIndex index="9">
-                                        <numIndex index="0">Danger</numIndex>
-                                        <numIndex index="1">bg-danger</numIndex>
-                                    </numIndex>
-                                    <numIndex index="10">
-                                        <numIndex index="0">Weiß</numIndex>
-                                        <numIndex index="1">bg-white</numIndex>
-                                    </numIndex>
-                                    <numIndex index="11">
-                                        <numIndex index="0">Keinen</numIndex>
-                                        <numIndex index="1">bg-none</numIndex>
-                                    </numIndex>
-                                </items>
+                                <itemsProcFunc>AtomicPlan\PlateCes\Utility\FlexTCADefaults->bgColor</itemsProcFunc>
                             </config>
                         </TCEforms>
                     </settings.background>

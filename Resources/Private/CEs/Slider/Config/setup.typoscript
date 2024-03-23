@@ -9,9 +9,15 @@ tt_content.tx_plate_ces_slider {
             0 = EXT:plate_ces/Resources/Private/CEs/Slider/
         }
         variables {
-            sliderHeight = TEXT
-            sliderHeight.data = flexform: pi_flexform:settings.sliderHeight
-            sliderHeight.ifEmpty =
+            sliderHeightDesktop = TEXT
+            sliderHeightDesktop.data = flexform: pi_flexform:settings.sliderHeightDesktop
+            sliderHeightDesktop.ifEmpty =
+            sliderHeightTablet = TEXT
+            sliderHeightTablet.data = flexform: pi_flexform:settings.sliderHeightTablet
+            sliderHeightTablet.ifEmpty =
+            sliderHeightMobile = TEXT
+            sliderHeightMobile.data = flexform: pi_flexform:settings.sliderHeightMobile
+            sliderHeightMobile.ifEmpty =
 
             imageFilter = TEXT
             imageFilter.data = flexform: pi_flexform:settings.imageFilter

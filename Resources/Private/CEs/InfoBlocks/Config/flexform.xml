@@ -78,7 +78,7 @@
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">Gleichmäßig</numIndex>
-                                        <numIndex index="1">grid</numIndex>
+                                        <numIndex index="1">ac-grid</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

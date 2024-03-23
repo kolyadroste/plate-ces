@@ -6,16 +6,17 @@
     .frame-type-tx_plate_ces_sliderpng .textpic{
         flex-direction: column;
         align-items: end;
+        gap: var(--plces-sliderpng-textimg-gap, var(--bs-gap-large, 50px));
     }
     .frame-type-tx_plate_ces_sliderpng .textpic-item{
-        width:100%;
+        width:100% !important;
     }
+
     .frame-type-tx_plate_ces_sliderpng .textpic-item.textpic-gallery{
-        margin-bottom: var(--bs-gap-xlarge, 50px);
         order: 1;
     }
     .frame-type-tx_plate_ces_sliderpng .textpic-item.textpic-text{
-        margin-bottom: var(--bs-gap-xlarge, 50px);
+        margin-bottom: var(--plces-sliderpng-text-mobile-mb, var(--bs-gap-large, 50px));
     }
     .frame-type-tx_plate_ces_sliderpng .frame-header > *{
         --bs-h2-font-size: inherit !important;

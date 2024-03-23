@@ -73,9 +73,17 @@ return [
 									'default' => [
 										'title' => 'Standard',
 										'allowedAspectRatios' => [
-											'default' => [
-												'title' => 'Quadratisch',
-												'value' => 1,
+											'1.6:1' => [
+												'title' => 'Standard',
+												'value' => 1.6 / 1,
+											],
+											'2:1' => [
+												'title' => '2:1',
+												'value' => 2 / 1,
+											],
+											'1.3:1' => [
+												'title' => '1.3:1',
+												'value' => 1.3 / 1,
 											],
 										],
 									],
@@ -186,9 +194,10 @@ return [
 
 	'types' => [
 		'0' => [
-			'showitem' => '--palette--;;general,description,--palette--;;media,
+			'showitem' => '--palette--;;general,description,tx_plate_ces_icon,
+			    --div--;Rückseite,description2,
+				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,,--palette--;;media,
                 --div--;Extra,countupval,countupunit,countupprecision,
-                --div--;FlipCard,description2,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,
@@ -203,7 +212,7 @@ return [
 		],
 		'media' => [
 			'label' => 'Medien',
-			'showitem' => 'image,tx_plate_ces_icon',
+			'showitem' => 'image',
 		],
 		'access' => [
 			'showitem' => '

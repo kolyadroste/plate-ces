@@ -5,11 +5,12 @@ defined('TYPO3') or die();
  * plugin Field definitions
  * */
 
-$plugin_showfields = '--palette--;;headers,--palette--;;general,
+$plugin_showfields = '--palette--;;general,--palette--;;headers,
     --div--;Button,pi_flexform,
     --div--;Text,bodytext,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames';
+    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
+    --div--;Navigation,tx_pl_lces_contentlinks_add_to_nav,pl_lces_nav_title';
 
 $pp_additional_columns = [
 

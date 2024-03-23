@@ -1,21 +1,37 @@
 atomic-slider{}
-atomic-slider.fullHeight{
-    --atomic-overlay-min-height-small: 70vh;
-    --atomic-overlay-min-height-medium: 70vh;
-    --atomic-overlay-min-height-large: 100vh;
-    --atomic-overlay-min-height-xlarge: 100vh;
+atomic-slider.mh100{
+    --atomic-overlay-min-height-small: 100vh;
 }
-atomic-slider.h75{
-    --atomic-overlay-min-height-small: 70vh;
-    --atomic-overlay-min-height-medium: 70vh;
-    --atomic-overlay-min-height-large: 75vh;
-    --atomic-overlay-min-height-xlarge: 75vh;
+atomic-slider.mh75{
+    --atomic-overlay-min-height-small: 75vh;
 }
-atomic-slider.h85{
-    --atomic-overlay-min-height-small: 70vh;
-    --atomic-overlay-min-height-medium: 70vh;
-    --atomic-overlay-min-height-large: 85vh;
-    --atomic-overlay-min-height-xlarge: 85vh;
+atomic-slider.mh85{
+    --atomic-overlay-min-height-small: 85vh;
+}
+@media (min-width: 768px) {
+    atomic-slider.th100{
+        --atomic-overlay-min-height-medium: 100vh;
+    }
+    atomic-slider.th75{
+        --atomic-overlay-min-height-medium: 75vh;
+    }
+    atomic-slider.th85{
+        --atomic-overlay-min-height-medium: 85vh;
+    }
+}
+@media (min-width: 992px) {
+    atomic-slider.th100{
+        --atomic-overlay-min-height-large: 100vh;
+        --atomic-overlay-min-height-xlarge: 100vh;
+    }
+    atomic-slider.th75{
+        --atomic-overlay-min-height-large: 75vh;
+        --atomic-overlay-min-height-xlarge: 75vh;
+    }
+    atomic-slider.th85{
+        --atomic-overlay-min-height-large: 85vh;
+        --atomic-overlay-min-height-xlarge: 85vh;
+    }
 }
 
 /* prevent layout shifting*/

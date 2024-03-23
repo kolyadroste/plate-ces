@@ -5,15 +5,20 @@
 >
 	<f:layout name="Default"/>
 
+	<f:section name="LayoutVars">
+		<f:variable name="tplInjectedClasses" value="ib-layout-{layout}"/>
+	</f:section>
+
+
 	<f:section name="Main">
 		<f:if condition="{infoBlocks}">
-			<f:if condition="{gridLayout}=='grid'">
+			<f:if condition="{gridLayout}=='ac-grid'">
 				<f:then>
 					<f:asset.css identifier="ac.grid.nums" href="{atomicAssets}atomic-components/ac.grid.nums.min.css" />
 					<f:variable name="gridLayoutClass" value="ac-grid-n::cols-3 xl(ac-grid-n::cols-{gridColumns})"/>
 				</f:then>
 				<f:else>
-					<f:asset.css identifier="ah.cols" href="{atomicAssets}Styles/helpers/ah.cols.min.css" />
+					<f:asset.css identifier="ah.cols" href="{assetPath}Styles/Generic/ah.cols.css" />
 					<f:variable name="gridLayoutClass" value="ah-cols::{gridColumns}"/>
 				</f:else>
 			</f:if>
@@ -27,42 +32,56 @@
 					<f:asset.css identifier="bs.utilities.xl" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.xl.css"/>
 					<f:asset.css identifier="bs.utilities.sm" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.sm.css"/>
 					<f:asset.css identifier="bs.utilities.md" href="{atomicAssets}atomic-bootstrap/Dist/utilities/utilities.md.css"/>
-					<div class="@container d-none d-lg-block d-xl-block">
-						<div class="{gridLayoutClass}  {gridGap}">
-							<f:for each="{infoBlocks}" as="infoBlock">
-								<f:switch expression="{data.layout}">
-									<f:case value="flipcards"><f:render section="flipcard" arguments="{_all}"/></f:case>
-									<f:defaultCase>
-										<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
-											<f:format.html>{infoBlock.data.description2}</f:format.html>
-										</f:render>
-									</f:defaultCase>
-								</f:switch>
-							</f:for>
-						</div>
+					<div class="@container d-none d-lg-block d-xl-block {f:if(condition:flipcardActivate,then:'layout-flipcards')}">
+						<f:if condition="{flipcardActivate}">
+							<f:then>
+								<f:asset.script identifier="atomic-equalize" type="module" src="EXT:plate_atomic_assets/Resources/Public/Webcomponents/Dist/atomic-equalize.min.js" />
+								<atomic-equalize selector="[ib-flip-card]" breakpoints="980::on">
+									<div class="{gridLayoutClass}  {gridGap}">
+										<f:render section="RenderList" arguments="{_all}"/>
+									</div>
+								</atomic-equalize>
+							</f:then>
+							<f:else>
+								<div class="{gridLayoutClass}  {gridGap}">
+									<f:render section="RenderList" arguments="{_all}"/>
+								</div>
+							</f:else>
+						</f:if>
 					</div>
 					<div class="d-lg-none">
 						<f:render section="ResponsiveSlider" arguments="{_all}"/>
 					</div>
 				</f:then>
 				<f:else>
-					<div class="@container">
-						<div class="{gridLayoutClass} {gridGap}">
-							<f:for each="{infoBlocks}" as="infoBlock">
-								<f:switch expression="{data.layout}">
-									<f:case value="flipcards"><f:render section="flipcard" arguments="{_all}"/></f:case>
-									<f:defaultCase>
-										<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
-											<f:format.html>{infoBlock.data.description2}</f:format.html>
-										</f:render>
-									</f:defaultCase>
-								</f:switch>
-							</f:for>
-						</div>
+					<div class="@container {f:if(condition:flipcardActivate,then:'layout-flipcards')}">
+						<f:if condition="{flipcardActivate}">
+							<f:then>
+									<f:asset.script identifier="atomic-equalize" type="module" src="EXT:plate_atomic_assets/Resources/Public/Webcomponents/Dist/atomic-equalize.min.js" />
+									<atomic-equalize selector="[ib-flip-card]" breakpoints="980::on">
+										<div class="{gridLayoutClass} {gridGap}">
+											<f:render section="RenderList" arguments="{_all}"/>
+										</div>
+									</atomic-equalize>
+							</f:then>
+							<f:else>
+								<div class="{gridLayoutClass} {gridGap}">
+									<f:render section="RenderList" arguments="{_all}"/>
+								</div>
+							</f:else>
+						</f:if>
 					</div>
 				</f:else>
 			</f:if>
 		</f:if>
+	</f:section>
+
+	<f:section name="RenderList">
+		<f:for each="{infoBlocks}" as="infoBlock">
+			<f:render section="defaultcard" arguments="{_all}" contentAs="footerContent">
+				<f:format.html>{infoBlock.data.description}</f:format.html>
+			</f:render>
+		</f:for>
 	</f:section>
 
 	<f:section name="ResponsiveSlider">
@@ -92,77 +111,36 @@
 		<div class="ac-card mb-4 d-flex justify-content-center asrc-slide">
 			<div class="text-inner-wrap vars-reduced-p-margin mb-0:last-child ">
 				<f:comment>{infoBlock}</f:comment>
-				<f:variable name="iconData" value="{
-                    icon: '{infoBlock.data.tx_plate_ces_icon}',
-                    width: '50',
-                    height: '50'
-                }" />
-				<f:render
-						partial="Atoms/Icon"
-						arguments="{data: iconData}"
-				/>
-				<f:render
-						partial="Header/Header"
-						arguments="{
-                        header: '{infoBlock.data.header}',
-                        layout: '3',
-                        default: '{settings.defaultHeaderType}',
-                        additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
-                    }"
-				/>
-				<f:if condition="{infoBlock.data.countupval}">
-					<f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
-					<h3>
-						<f:comment>{infoBlock.data.countupprecision}</f:comment>
-						<atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
-					</h3>
+				<f:if condition="{infoBlock.data.tx_plate_ces_icon}">
+					<f:variable name="iconData" value="{
+						icon: '{infoBlock.data.tx_plate_ces_icon}',
+						width: '50',
+						height: '50'
+					}" />
+					<f:render
+							partial="Atoms/Icon"
+							arguments="{data: iconData}"
+					/>
 				</f:if>
-				{footerContent ->f:format.raw()}
-			</div>
-		</div>
-	</f:section>
-
-	<f:section name="flipcard">
-		<f:asset.css identifier="plces.ib-flip-card" href="{assetPath}Styles/InfoBlocks/IbFlipCard.css" />
-		<div class="ac-card flipcard mb-4 d-flex justify-content-center asrc-slide">
-			<div class="text-inner-wrap vars-reduced-p-margin mb-0:last-child ">
-				<div class="ib-flip-card-front p-4">
-					<f:variable name="iconData" value="{
-                        icon: '{infoBlock.data.tx_plate_ces_icon}',
-                        width: '50',
-                        height: '50'
-                    }" />
-					<f:render
-							partial="Atoms/Icon"
-							arguments="{data: iconData}"
-					/>
-					<f:render
-							partial="Header/Header"
-							arguments="{
-                                    header: '{infoBlock.data.header}',
-                                    layout: '3',
-                                    default: '{settings.defaultHeaderType}',
-                                    additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
-                                }"
-					/>
-					<f:if condition="{infoBlock.data.countupval}">
-						<f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
-						<h3>
-							<atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
-						</h3>
-					</f:if>
-					<f:format.html>{infoBlock.data.description}</f:format.html>
-				</div>
-				<div class="ib-flip-card-back p-4 -colorized">
-					<f:variable name="iconData" value="{
-                        icon: '{infoBlock.data.tx_plate_ces_icon}',
-                        width: '50',
-                        height: '50'
-                    }" />
-					<f:render
-							partial="Atoms/Icon"
-							arguments="{data: iconData}"
-					/>
+				<f:if condition="{infoBlock.image && infoBlock.image.0}">
+					<f:variable name="imgConfig" value="{
+							992:{w:500,cropVariant:'default'},
+							768:{w:500,cropVariant:'default'},
+							500:{w:500,cropVariant:'default'},
+							400:{w:400,cropVariant:'default'},
+							300:{w:300,cropVariant:'default'}
+						}"/>
+					<f:variable name="imageData" value="{
+							uid:'{infoBlock.properties.uid}',
+							image:infoBlock.image.0,
+							alt: infoBlock.properties.alternative,
+							title: infoBlock.properties.title,
+							config: imgConfig,
+							additionalClasses: 'w-100 h-auto'
+						}"/>
+					<f:render partial="Atoms/Image" arguments="{data: imageData}"/>
+				</f:if>
+				<div class="content p-4">
 					<f:render
 							partial="Header/Header"
 							arguments="{
@@ -172,7 +150,14 @@
 							additionalClasses: 'h5 mb-xsmall text-align-{titleAlign}'
 						}"
 					/>
-					<f:format.html>{infoBlock.data.description2}</f:format.html>
+					<f:if condition="{infoBlock.data.countupval}">
+						<f:asset.script identifier="atomic-countup" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-countup.min.js" priority="1"/>
+						<h3>
+							<f:comment>{infoBlock.data.countupprecision}</f:comment>
+							<atomic-countup value="{infoBlock.data.countupval}" duration="2000" precision="{infoBlock.data.countupprecision}" easeOut></atomic-countup> {infoBlock.data.countupunit}
+						</h3>
+					</f:if>
+					{footerContent ->f:format.raw()}
 				</div>
 			</div>
 		</div>

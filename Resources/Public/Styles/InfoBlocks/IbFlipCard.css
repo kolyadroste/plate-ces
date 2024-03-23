@@ -1,30 +1,30 @@
-.frame-type-tx_plate_ces_infoblocks.frame-layout-flipcards .ac-card.flipcard {
+.frame-type-tx_plate_ces_infoblocks .layout-flipcards .ac-card.flipcard {
     background-color: transparent;
     width: 100%;
-    height: 300px;
+    height: auto;
 
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.frame-type-tx_plate_ces_infoblocks.frame-layout-flipcards .ac-card.flipcard .text-inner-wrap {
+.frame-type-tx_plate_ces_infoblocks .layout-flipcards .ac-card.flipcard .text-inner-wrap {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     text-align: var(--plce-ib-fc-text-align,center);
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
 
-.frame-type-tx_plate_ces_infoblocks.frame-layout-flipcards .ac-card.flipcard:hover .text-inner-wrap {
+.frame-type-tx_plate_ces_infoblocks .layout-flipcards .ac-card.flipcard:hover .text-inner-wrap {
     transform: rotateY(180deg);
 }
 
 /* Position the front and back side */
 .ib-flip-card-front, .ib-flip-card-back {
-    position: absolute;
+    position: relative;
     border-radius: var(--plce-ib-fc-border-radius,0.25rem);
     width: 100%;
-    height: 100%;
+    height: auto;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
@@ -37,6 +37,9 @@
 
 /* Style the back side */
 .ib-flip-card-back {
+    position: absolute;
+    top: 0;
+    min-height: 100%;
     background-color: var(--bs-primary, dodgerblue);
     color: white;
     transform: rotateY(180deg);

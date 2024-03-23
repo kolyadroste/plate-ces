@@ -14,13 +14,25 @@
         <f:asset.script identifier="atomic-slider" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slider.min.js" priority="1"/>
         <f:asset.script identifier="atomic-slider-slide" type="module" src="{atomicAssets}Webcomponents/Dist/atomic-slide.min.js" priority="1"/>
         <f:asset.css identifier="plate_ces.slider" href="{assetPath}Styles/Slider/Slider.css" />
-        <f:switch expression="{sliderHeight}">
-            <f:case value="full"><f:variable name="classHeight" value="fullHeight"/></f:case>
-            <f:case value="h75"><f:variable name="classHeight" value="h75"/></f:case>
-            <f:case value="h85"><f:variable name="classHeight" value="h85"/></f:case>
-            <f:defaultCase><f:variable name="classHeight" value=""/></f:defaultCase>
+        <f:variable name="classHeight" value=""/>
+        <f:switch expression="{sliderHeightMobile}">
+            <f:case value="mh100"><f:variable name="classHeight" value="mh100"/></f:case>
+            <f:case value="mh75"><f:variable name="classHeight" value="mh75"/></f:case>
+            <f:case value="mh85"><f:variable name="classHeight" value="mh85"/></f:case>
+            <f:defaultCase></f:defaultCase>
         </f:switch>
-
+        <f:switch expression="{sliderHeightTablet}">
+            <f:case value="th100"><f:variable name="classHeight" value="{classHeight} th100"/></f:case>
+            <f:case value="th75"><f:variable name="classHeight" value="{classHeight} th75"/></f:case>
+            <f:case value="th85"><f:variable name="classHeight" value="{classHeight} th85"/></f:case>
+            <f:defaultCase></f:defaultCase>
+        </f:switch>
+        <f:switch expression="{sliderHeightDesktop}">
+            <f:case value="dh100"><f:variable name="classHeight" value="{classHeight} dh100"/></f:case>
+            <f:case value="dh75"><f:variable name="classHeight" value="{classHeight} dh75"/></f:case>
+            <f:case value="dh85"><f:variable name="classHeight" value="{classHeight} dh85"/></f:case>
+            <f:defaultCase></f:defaultCase>
+        </f:switch>
         <f:variable name="vars" value=""/>
         <f:if condition="{iconColor}"><f:variable name="vars" value="{vars} --bs-icon-color:var({iconColor}) !important;"/></f:if>
         <f:if condition="{slides}">
@@ -58,9 +70,6 @@
                             <f:variable name="imageFilter" value="{slide.properties.tx_plate_ces_select2}"/>
                     </f:if>
                     <f:variable name="slideLink" value="{f:uri.typolink(parameter:slide.link)}"/>
-                    <f:variable name="slideLayout" value="{data.layout}"/>
-                    <f:if condition="{slide.layout}"><f:variable name="slideLayout" value="{slide.layout}"/></f:if>
-
 
                     <f:comment>FirstImage shouldnt be loaded lazy</f:comment>
                     <f:variable name="imgLazy" value="lazy"/>
@@ -75,7 +84,8 @@
                         1000:{w:1200,cropVariant:'tablet'},
                         600:{w:900,cropVariant:'mobile'},
                         500:{w:550,cropVariant:'mobile'},
-                        400:{w:400,cropVariant:'mobile'}
+                        400:{w:450,cropVariant:'mobile'},
+                        0:{w:400,cropVariant:'mobile'}
                     }"/>
 
                     <f:variable name="slideData" value="{

@@ -57,33 +57,6 @@
                             </config>
                         </TCEforms>
                     </settings.positionNavDots>
-                    <settings.sliderHeight>
-                        <TCEforms>
-                            <label>Höhe</label>
-                            <config>
-                                <type>select</type>>
-                                <renderType>selectSingle</renderType>
-                                <items>
-                                    <numIndex index="0">
-                                        <numIndex index="0">Standard</numIndex>
-                                        <numIndex index="1"></numIndex>
-                                    </numIndex>
-                                    <numIndex index="1">
-                                        <numIndex index="0">Volle Höhe</numIndex>
-                                        <numIndex index="1">full</numIndex>
-                                    </numIndex>
-                                    <numIndex index="2">
-                                        <numIndex index="0">75%</numIndex>
-                                        <numIndex index="1">h75</numIndex>
-                                    </numIndex>
-                                    <numIndex index="3">
-                                        <numIndex index="0">85%</numIndex>
-                                        <numIndex index="1">h85</numIndex>
-                                    </numIndex>
-                                </items>
-                            </config>
-                        </TCEforms>
-                    </settings.sliderHeight>
                     <settings.blendtime>
                         <TCEforms>
                             <label>Überblendungzeit (Beispiel: '3s', '3000ms')</label>
@@ -130,6 +103,117 @@
                 </el>
             </ROOT>
         </sDEF>
+        <desktop>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Desktop</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.sliderHeightDesktop>
+                        <TCEforms>
+                            <label>Höhe</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Volle Höhe</numIndex>
+                                        <numIndex index="1">dh100</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">75%</numIndex>
+                                        <numIndex index="1">dh75</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">85%</numIndex>
+                                        <numIndex index="1">dh85</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.sliderHeightDesktop>
+                </el>
+            </ROOT>
+        </desktop>
+        <tablet>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Tablet</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.sliderHeightTablet>
+                        <TCEforms>
+                            <label>Höhe</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Volle Höhe</numIndex>
+                                        <numIndex index="1">th100</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">75%</numIndex>
+                                        <numIndex index="1">th75</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">85%</numIndex>
+                                        <numIndex index="1">th85</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.sliderHeightTablet>
+                </el>
+            </ROOT>
+        </tablet>
+        <mobile>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Mobile</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.sliderHeightMobile>
+                        <TCEforms>
+                            <label>Höhe</label>
+                            <config>
+                                <type>select</type>>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Standard</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Volle Höhe</numIndex>
+                                        <numIndex index="1">mh100</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">75%</numIndex>
+                                        <numIndex index="1">mh75</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">85%</numIndex>
+                                        <numIndex index="1">mh85</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.sliderHeightMobile>
+                </el>
+            </ROOT>
+        </mobile>
         <expert>
             <ROOT>
                 <TCEforms>

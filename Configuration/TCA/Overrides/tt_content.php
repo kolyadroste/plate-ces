@@ -8,7 +8,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use AtomicPlan\PlateCes\Utility\TcaHelpers;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
-
+$GLOBALS['TCA']['tt_content']['types']['tx_plate_ces_imageslide']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['crop']['default']['title'] = 'asdasdasd';
 (function ($defaultExtension = 'plate_ces', $cePath = 'Resources/Private/CEs/', $configPath = '/Config/') {
 
     $extPath = ExtensionManagementUtility::extPath('plate_ces');
@@ -30,26 +30,42 @@ use TYPO3\CMS\Core\Utility\RootlineUtility;
         $currPath = is_dir($absCustomPath . $ce) ? $absCustomPath . $ce : $extPath . $cePath . $ce;
         $extension = is_dir($absCustomPath . $ce) ? $overrideExt : $defaultExtension;
         $extCePath = 'EXT:' . $extension .'/'. $cePath . $ce;
-
         if (!TcaHelpers::checkFilesExist($currPath . $configPath, $requiredCeFiles)) {
-            throw new \Exception('Plate Ces - Override Path is set but files are missing for: ' . $ce, 1623159831);
+            throw new \Exception('Plate Ces - Override Path is set but files are missing for: ' . $extCePath, 1623159831);
         }
 
-        $plugin = 'tx_plate_ces_' . strtolower($ce);
+		$plugin = 'tx_plate_ces_' . strtolower($ce);
+		$iconident = $extension .'-' . strtolower($ce);
+		if (!is_array($GLOBALS['TCA']['tt_content']['types'][$plugin] ?? false)) {
+			$GLOBALS['TCA']['tt_content']['types'][$plugin] = [];
+		}
 
-        ExtensionManagementUtility::addPlugin(
-            ['LLL:' . $extCePath . $configPath . 'll.xlf:title', $plugin, 'EXT:' . $extension . '/Resources/Public/CeIcons/' . $ce . '.svg'],
-            'CType',
-            $plugin
-        );
+		try {
+			include_once($currPath . $configPath . 'tt_content.php');
 
-        try {
-            include_once($currPath . $configPath . 'tt_content.php');
+			$config = json_decode(file_get_contents($currPath . $configPath . 'config.json'), true);
+		} catch (\Exception $e) {
+			throw new \Exception('PlateCes - Error while including files for: ' . $extCePath . $configPath . ' ->' . $e, 1623159831);
+		}
 
-            $config = json_decode(file_get_contents($currPath . $configPath . 'config.json'), true);
-        } catch (\Exception $e) {
-            throw new \Exception('Plate Ces - Error while including files for: ' . $currPath . $configPath . ' ############' . $e, 1623159831);
-        }
+
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+			'tt_content',
+			'CType',
+			[
+				// title
+				'label' => 'LLL:' . $extCePath . $configPath . 'll.xlf:title',
+				// plugin signature: extkey_identifier
+				'value' => $plugin,
+				// icon identifier
+				'icon' => $iconident,
+				// group
+				'group' => $config['typeCategory'] ?? 'default',
+			],
+		);
+		// Adds the content element icon to TCA typeicon_classes
+		$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$plugin] = 'content-text2';
+
 
         if (file_exists($currPath . $configPath . 'flexform.xml')) {
             ExtensionManagementUtility::addPiFlexFormValue('*', 'FILE:' . $currPath .$configPath . 'flexform.xml', $plugin);

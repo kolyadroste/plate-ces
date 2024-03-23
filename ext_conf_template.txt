@@ -1,2 +1,15 @@
 # cat=basic//10; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
 plateCesCustomPath = EXT:customer_theme/Resources/Private/CEs/
+# cat=basic//11; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath2 =
+# cat=basic//11; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath3 =
+# cat=basic//12; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath4 =
+# cat=basic//13; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath5 =
+# cat=basic//14; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath6 =
+# cat=basic//15; type=string; label = Set a Path to Folder that contains your custom Ces. You can override Ces by using the same name as the original Ces.
+plateCesCustomPath7 =
+

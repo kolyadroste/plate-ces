@@ -9,6 +9,9 @@ tt_content.tx_plate_ces_infoblocks {
             0 = EXT:plate_ces/Resources/Private/CEs/InfoBlocks/
         }
         variables {
+            layout = TEXT
+            layout.data = layout
+            layout.ifEmpty = default
             titleAlign = TEXT
             titleAlign.data = flexform:pi_flexform:settings.title-align
             titleAlign.ifEmpty = center
@@ -24,6 +27,10 @@ tt_content.tx_plate_ces_infoblocks {
             responsiveCols = TEXT
             responsiveCols.data = flexform:pi_flexform:settings.responsiveCols
             responsiveCols.ifEmpty = none
+
+            flipcardActivate = TEXT
+            flipcardActivate.data = flexform:pi_flexform:settings.flipcardActivate
+            flipcardActivate.ifEmpty = 0
         }
         dataProcessing {
             10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -42,6 +49,7 @@ tt_content.tx_plate_ces_infoblocks {
                     10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
                     10 {
                         references.fieldName = image
+                        as = image
                     }
                 }
             }

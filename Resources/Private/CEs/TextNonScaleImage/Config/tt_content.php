@@ -35,8 +35,8 @@ $plugin_showfields = '--palette--;;general,--palette--;;headers,
     --div--;Text, tx_plate_ces_input1, bodytext,
     --div--;Einstellungen,tx_plate_ces_check1,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames';
-
+    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
+    --div--;Navigation,tx_pl_lces_contentlinks_add_to_nav,pl_lces_nav_title';
 
 
 $newSysFileReferenceColumns = [
@@ -47,93 +47,106 @@ $newSysFileReferenceColumns = [
 	'imageSlidePalette', 'alternative, title');
 
 // Configure the default backend fields for the content element
-$GLOBALS['TCA']['tt_content']['types'][$plugin] = [
-	'showitem' => $plugin_showfields,
-	'columnsOverrides' => [
-		'header' => [
-			'label' => 'Bezeichner (Nur für das Typo3 Backend)'
-		],
-		'bodytext' => [
-			'config' => [
-				'enableRichtext' => true,
-				'richtextConfiguration' => 'bootstrap'
+$GLOBALS['TCA']['tt_content']['types'][$plugin] = array_replace_recursive(
+	$GLOBALS['TCA']['tt_content']['types'][$plugin],
+	[
+		'showitem' => $plugin_showfields,
+		'columnsOverrides' => [
+			'header' => [
+				'label' => 'Bezeichner (Nur für das Typo3 Backend)'
+			],
+			'imagewidth' => [
+				'description' => 'Um die Responsivität zu gewährleisten, werden Bilder bei kleineren Bildschirmen automatisch skaliert.'
+			],
+			'bodytext' => [
+				'config' => [
+					'enableRichtext' => true,
+					'richtextConfiguration' => 'bootstrap'
+				]
+			],
+			'image' => [
+				'config' => [
+					'maxitems' => 15,
+					'overrideChildTca' => [
+						'types' => [
+							\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+								'showitem' => '
+									--palette--;Optionen;imageSlidePalette,
+									crop,
+									--palette--;;filePalette'
+							],
+						],
+						'columns' => [
+							'crop' => [
+								'config' => [
+									'cropVariants' => [
+										'specialMobile' => [
+											'disabled' => true,
+										],
+
+										'default' => [
+											'title' => 'Desktop',
+											'allowedAspectRatios' => [
+												'' => [
+													'title' => 'Wide-Panorama',
+													'value' => 4 / 1
+												],
+												'3:1' => [
+													'title' => '3 zu 1',
+													'value' => 3.2 / 1
+												],
+												'2:1' => [
+													'title' => '2 zu 1',
+													'value' => 2 / 1
+												],
+												'default' => [
+													'title' => 'Frei',
+													'value' => 0
+												]
+											],
+										],
+										'tablet' => [
+											'title' => 'Tablet',
+											'allowedAspectRatios' => [
+												'3:1' => [
+													'title' => 'Panorama',
+													'value' => 2.8 / 1
+												],
+												'2:1' => [
+													'title' => '3 zu 2',
+													'value' => 3 / 2
+												],
+												'default' => [
+													'title' => 'Frei',
+													'value' => 0
+												]
+											],
+										],
+										'mobile' => [
+											'title' => 'Mobile Geräte',
+											'allowedAspectRatios' => [
+												'2:1' => [
+													'title' => 'Mobile',
+													'value' => 2 / 1
+												],
+												'1:1' => [
+													'title' => 'Quadratisch',
+													'value' => 0
+												],
+												'default' => [
+													'title' => 'Frei',
+													'value' => 0
+												]
+											],
+										],
+									],
+								],
+							],
+						]
+					]
+				]
 			]
-		],
+		]
 	]
-];
-
-$GLOBALS['TCA']['tt_content']['types']['columnsOverrides']['image']['label'] = 'Bild';
-$GLOBALS['TCA']['tt_content']['types']['columnsOverrides']['image']['config']['maxitems'] = 15;
-$GLOBALS['TCA']['tt_content']['types']['columnsOverrides']['image']['config']['overrideChildTca']['types'] = [
-	\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-		'showitem' => '
-			--palette--;Optionen;imageSlidePalette,
-			crop,
-			--palette--;;filePalette'
-	],
-];
-$GLOBALS['TCA']['tt_content']['types']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['crop'] = [
-	'cropVariants' => [
-		'specialMobile' => [
-			'disabled' => true,
-		],
-
-		'default' => [
-			'title' => 'Desktop',
-			'allowedAspectRatios' => [
-				'' => [
-					'title' => 'Wide-Panorama',
-					'value' => 4 / 1
-				],
-				'3:1' => [
-					'title' => '3 zu 1',
-					'value' => 3.2 / 1
-				],
-				'2:1' => [
-					'title' => '2 zu 1',
-					'value' => 2 / 1
-				],
-				'default' => [
-					'title' => 'Frei',
-					'value' => 0
-				]
-			],
-		],
-		'tablet' => [
-			'title' => 'Tablet',
-			'allowedAspectRatios' => [
-				'3:1' => [
-					'title' => 'Panorama',
-					'value' => 2.8 / 1
-				],
-				'2:1' => [
-					'title' => '3 zu 2',
-					'value' => 3 / 2
-				],
-				'default' => [
-					'title' => 'Frei',
-					'value' => 0
-				]
-			],
-		],
-		'mobile' => [
-			'title' => 'Mobile Geräte',
-			'allowedAspectRatios' => [
-				'2:1' => [
-					'title' => 'Mobile',
-					'value' => 2 / 1
-				],
-				'1:1' => [
-					'title' => 'Quadratisch',
-					'value' => 0
-				],
-				'default' => [
-					'title' => 'Frei',
-					'value' => 0
-				]
-			],
-		],
-	],
-];
-
+);
 
